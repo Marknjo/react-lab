@@ -1,6 +1,7 @@
 import './styles/main.scss';
 import { consoleSeparator } from './helpers/consoleSeparator';
 import ExpenseItem from './components/ExpenseItem';
+import Card from './components/Card';
 
 function App() {
   consoleSeparator();
@@ -27,7 +28,7 @@ function App() {
   ];
 
   return (
-    <div>
+    <Card className="expenses">
       <h1>Hello React App</h1>
 
       <ExpenseItem
@@ -53,7 +54,7 @@ function App() {
         amount={expenses[3].amount}
         date={expenses[3].date}
       />
-    </div>
+    </Card>
   );
 }
 
