@@ -1,6 +1,6 @@
 import { consoleSeparator } from './helpers/consoleSeparator';
 
-import Expenses from './components/Expenses';
+import Expenses from './components/Expenses/Expenses';
 
 function App() {
   consoleSeparator();
