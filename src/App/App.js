@@ -2,7 +2,7 @@ import { consoleSeparator } from './helpers/consoleSeparator';
 
 import Expenses from './components/Expenses/Expenses';
 
-function App() {
+const App = function () {
   consoleSeparator();
 
   return (
@@ -12,6 +12,6 @@ function App() {
       <Expenses />
     </div>
   );
-}
+};
 
 export default App;
