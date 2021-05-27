@@ -2,11 +2,11 @@ import "./styles/main.scss";
 import { consoleSeparator } from "./helpers/consoleSeparator";
 
 function App() {
+  consoleSeparator();
   return (
     <div>
-      <p>Hello React App</p>
-
-      {consoleSeparator()}
+      <h1>Hello React App</h1>
+      <p>This is also visible</p>
     </div>
   );
 }
