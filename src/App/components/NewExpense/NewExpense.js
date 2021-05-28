@@ -5,7 +5,7 @@ const NewExpense = function ({ onAddExpenseToUI }) {
   const fetchExpenseHandler = expense => {
     const expenseData = {
       ...expense,
-      id: Math.random().toString().slice(2, 15),
+      id: `e${Math.random().toString().slice(2, 15)}`,
     };
 
     onAddExpenseToUI(expenseData);
