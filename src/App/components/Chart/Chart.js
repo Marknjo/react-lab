@@ -1,3 +1,4 @@
+import Card from '../UI/Card';
 import './Chart.css';
 import ChartBar from './ChartBar';
 
@@ -5,7 +6,7 @@ const Chart = function ({ dataPoints }) {
   const dataPointsValues = dataPoints.map(dataPoint => dataPoint.value);
   const totalMaximum = Math.max(...dataPointsValues);
   return (
-    <div className="chart">
+    <Card className="chart">
       {dataPoints.map(dataPoint => {
         return (
           <ChartBar
@@ -16,7 +17,7 @@ const Chart = function ({ dataPoints }) {
           />
         );
       })}
-    </div>
+    </Card>
   );
 };
 

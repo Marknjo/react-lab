@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ExpenseToggleForm from '../Expenses/ExpensesToggleForm';
+import ExpenseToggleFormBtns from './ExpensesToggleFormBtns';
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
@@ -21,7 +21,7 @@ const NewExpense = function ({ onAddExpenseToUI }) {
 
   return (
     <div className="new-expense">
-      <ExpenseToggleForm
+      <ExpenseToggleFormBtns
         showFormStatus={showFormStatus}
         onToggleForm={toggleFormHandler}
       />
