@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = function () {
+const ExpenseForm = function ({ onFetchExpense }) {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -44,7 +44,7 @@ const ExpenseForm = function () {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
+    onFetchExpense(expenseData);
     //clear the inputs (Two way binding)
     setEnteredTitle('');
     setEnteredAmount('');
