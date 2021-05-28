@@ -24,3 +24,22 @@
 .new-expense__actions {
   text-align: right;
 }
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  animation: hide 0.4s ease-out;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    height: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    height: 0;
+    display: none;
+  }
+}

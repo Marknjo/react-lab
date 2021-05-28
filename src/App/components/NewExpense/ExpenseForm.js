@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = function ({ onFetchExpense }) {
+const ExpenseForm = function ({ displayStatus, onFetchExpense }) {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -52,7 +52,7 @@ const ExpenseForm = function ({ onFetchExpense }) {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={displayStatus ? '' : 'hidden'}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>

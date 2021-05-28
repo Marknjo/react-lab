@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import ExpenseToggleForm from '../Expenses/ExpensesToggleForm';
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
 const NewExpense = function ({ onAddExpenseToUI }) {
+  const [showFormStatus, setShowFormStatus] = useState(false);
+
   const fetchExpenseHandler = expense => {
     const expenseData = {
       ...expense,
@@ -10,9 +14,22 @@ const NewExpense = function ({ onAddExpenseToUI }) {
 
     onAddExpenseToUI(expenseData);
   };
+
+  const toggleFormHandler = toggleForm => {
+    setShowFormStatus(toggleForm);
+  };
+
   return (
     <div className="new-expense">
-      <ExpenseForm onFetchExpense={fetchExpenseHandler} />
+      <ExpenseToggleForm
+        showFormStatus={showFormStatus}
+        onToggleForm={toggleFormHandler}
+      />
+
+      <ExpenseForm
+        displayStatus={showFormStatus}
+        onFetchExpense={fetchExpenseHandler}
+      />
     </div>
   );
 };
