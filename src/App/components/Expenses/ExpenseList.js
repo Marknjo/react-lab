@@ -7,7 +7,7 @@ const ExpenseList = function ({ filteredExpenses }) {
   }
 
   return (
-    <ul className="expense-list">
+    <ul className="expenses-list">
       {filteredExpenses.map(expense => {
         return (
           <ExpenseItem
