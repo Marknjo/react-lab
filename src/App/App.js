@@ -1,11 +1,6 @@
-//import { consoleSeparator } from './helpers/consoleSeparator';
-
+//import { consoleSeparator } from './helpers/consoleSeparator'
 const App = function () {
-  return (
-    <div>
-      <h2>Start the next Session</h2>
-    </div>
-  );
+  return <></>;
 };
 
 export default App;
