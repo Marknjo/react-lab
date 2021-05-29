@@ -1,0 +1,12 @@
+.info-lists__list:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+.info-list__content {
+  margin: 0;
+  border: 1px solid #350535;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  color: #333;
+}
