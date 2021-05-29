@@ -7,16 +7,20 @@ import { useState } from 'react';
 
 //import { consoleSeparator } from './helpers/consoleSeparator'
 const App = function () {
-  //handle errors
+  //handle set errors
   const [isError, setIsError] = useState({
     valid: false,
     message: '',
   });
-  const [usersInfo, setUsersInfo] = useState([]);
+
   //1. get  sanitized form submission data
+  const [usersInfo, setUsersInfo] = useState([]);
+
+  //handle page load
   if (usersInfo.length === 0)
     setUsersInfo([{ message: 'Fill the form to display age' }]);
 
+  //2. Pass the data to the form
   const fetchSubmittedFormInfoHandler = userInfo => {
     setUsersInfo(prevState =>
       isError.valid
@@ -25,7 +29,6 @@ const App = function () {
     );
   };
 
-  //2. Pass the data to the form
   //3. Handle errors if any
   const errorHandler = checkStatus => {
     setIsError(checkStatus);

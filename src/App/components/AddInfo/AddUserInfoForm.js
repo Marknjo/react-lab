@@ -51,7 +51,7 @@ const AddUserInfoForm = function ({
       return;
     }
 
-    //Throw error if the submitted user is already in the list
+    //7. Throw error if the submitted user is already in the list
     for (const userInfo of usersInfo) {
       if (userInfo.username === username) {
         return onError(prevState => ({
@@ -63,17 +63,17 @@ const AddUserInfoForm = function ({
       }
     }
 
-    //Map clean data data
+    //8. Map clean data data
     const data = {
       id: Math.random().toString().slice(2, 15),
       username,
       age,
     };
 
-    //submit data
+    //9. submit data
     onFetchSubmittedFormInfo(data);
 
-    //clear fields
+    //10. clear fields
     setAge('');
     setUsername('');
   };
