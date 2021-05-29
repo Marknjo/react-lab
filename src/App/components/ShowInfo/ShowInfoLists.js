@@ -3,8 +3,9 @@ import Card from '../../UI/Card';
 import ShowInfoList from './ShowInfoList';
 import styles from './ShowInfoLists.module.css';
 
+/*
 const usersInfo_dummy = [
-  /* {
+   {
       id: Math.random().toString().slice(2, 15),
       username: 'Leon',
       age: 31,
@@ -18,8 +19,9 @@ const usersInfo_dummy = [
       id: Math.random().toString().slice(2, 15),
       username: 'Jeff',
       age: 36,
-    }, */
+    }, 
 ];
+*/
 
 const ShowInfoLists = function () {
   const [usersInfo, setUsersInfo] = useState([]);
