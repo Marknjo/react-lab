@@ -4,7 +4,7 @@ import styles from './AddUserInfoForm.module.css';
 import FormInput from './FormInput';
 import { useState } from 'react';
 
-const AddUserInfoForm = function ({ onFetchSubmittedFormInfo }) {
+const AddUserInfoForm = function ({ usersInfo, onFetchSubmittedFormInfo }) {
   //data validation state
   const [isInvalid, setIsInvalid] = useState({
     invalid: false,
@@ -58,7 +58,20 @@ const AddUserInfoForm = function ({ onFetchSubmittedFormInfo }) {
       age,
     };
 
-    onFetchSubmittedFormInfo([data]);
+    //set invalid if the submitted user is the same as the one in the
+    // @todo:  implement filtering multiple users
+    /* usersInfo.forEach(user => {
+      if (user.username === username) {
+        return setIsInvalid(prevState => ({
+          ...prevState,
+          invalid: true,
+          message:
+            "Can't have the same username in the list. Add a unique user!",
+        }));
+      }
+    }); */
+
+    onFetchSubmittedFormInfo(data);
   };
 
   //form input descriptions
