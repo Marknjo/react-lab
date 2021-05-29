@@ -51,25 +51,26 @@ const AddUserInfoForm = function ({
       return;
     }
 
-    //send data
-    const data = {
-      id: Math.random().toString().slice(2, 15),
-      username,
-      age,
-    };
-
-    //set invalid if the submitted user is the same as the one in the
+    //Throw error if the submitted user is already in the list
     // @todo:  implement filtering multiple users
-    /* usersInfo.forEach(user => {
-      if (user.username === username) {
-        return  onError(prevState => ({
+
+    for (const userInfo of usersInfo) {
+      if (userInfo.username === username) {
+        return onError(prevState => ({
           ...prevState,
           valid: true,
           message:
             "Can't have the same username in the list. Add a unique user!",
         }));
       }
-    }); */
+    }
+
+    //send data
+    const data = {
+      id: Math.random().toString().slice(2, 15),
+      username,
+      age,
+    };
 
     onFetchSubmittedFormInfo(data);
   };
