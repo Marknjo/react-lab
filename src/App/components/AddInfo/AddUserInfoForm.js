@@ -1,18 +1,27 @@
 import Card from '../../UI/Card';
 import styles from './AddUserInfoForm.module.css';
+import FormInput from './FormInput';
 
 const AddUserInfoForm = function () {
+  //form input descriptions
+  const inputUsername = {
+    name: 'username',
+    id: 'username',
+    label: 'Username',
+    type: 'text',
+  };
+  const inputAge = {
+    name: 'age',
+    id: 'age',
+    label: 'Age (Years)',
+    type: 'number',
+  };
+
   return (
     <Card>
       <form className={styles['form-control']}>
-        <div className={styles['form-control__group']}>
-          <label htmlFor="username">Username</label>
-          <input name="username" type="text" id="username" />
-        </div>
-        <div className={styles['form-control__group']}>
-          <label htmlFor="age">Age (Years)</label>
-          <input name="age" type="number" id="age" />
-        </div>
+        <FormInput inputDesc={inputUsername} />
+        <FormInput inputDesc={inputAge} />
 
         <div className={styles['form-control__btn']}>
           <button type="submit">Add User</button>
