@@ -63,18 +63,19 @@ const AddUserInfoForm = function ({
       }
     }
 
-    //send data
+    //Map clean data data
     const data = {
       id: Math.random().toString().slice(2, 15),
       username,
       age,
     };
 
+    //submit data
+    onFetchSubmittedFormInfo(data);
+
     //clear fields
     setAge('');
     setUsername('');
-
-    onFetchSubmittedFormInfo(data);
   };
 
   //form input descriptions

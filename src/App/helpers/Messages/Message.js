@@ -10,20 +10,17 @@ const Message = function ({ isError, onCloseModal }) {
 
   //2. close modal by clicking overlay
   //3. close modal by clicking esc button
-  //@todo - learn how to solve this dillema
-  /* const handleEscapeKey = event => {
+  const handleEscapeKey = event => {
     if (event.key === 'Escape') {
       onCloseModal({
         valid: false,
         message: '',
       });
-      console.log('Escaped');
     }
+    event.stopImmediatePropagation();
+  };
 
-    event.stopPropagation();
-  }; */
-
-  //window.addEventListener('keydown', handleEscapeKey);
+  window.addEventListener('keydown', handleEscapeKey);
   //window.onKeyDown = handleEscapeKey;
 
   return (
