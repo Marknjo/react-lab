@@ -27,7 +27,7 @@ const App = function () {
 
   //2. Pass the data to the form
   //3. Handle errors if any
-  const handleErrorMessagesHandler = checkStatus => {
+  const errorHandler = checkStatus => {
     setIsError(checkStatus);
   };
 
@@ -37,13 +37,13 @@ const App = function () {
         <AddUserInfoForm
           usersInfo={usersInfo}
           onFetchSubmittedFormInfo={fetchSubmittedFormInfoHandler}
-          onHandleErrorMessages={handleErrorMessagesHandler}
+          onError={errorHandler}
         />
         <ShowInfoLists usersInfo={usersInfo} />
       </main>
 
-      <Message isError={isError} />
-      <MessageOverlay isError={isError} />
+      <Message isError={isError} onCloseModal={errorHandler} />
+      <MessageOverlay isError={isError} onCloseModal={errorHandler} />
     </>
   );
 };
