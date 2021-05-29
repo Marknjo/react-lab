@@ -1,6 +1,7 @@
 .modal {
   overflow: hidden;
   margin-bottom: 0;
+  padding: 0;
   display: block;
   width: 65%;
   position: absolute;
@@ -16,4 +17,30 @@
 
 .modal.hide::after {
   display: none;
+}
+
+.modal__content,
+.modal__title {
+  padding: 1.6rem;
+}
+
+h2.modal__title {
+  margin: 0;
+  background-color: #350535;
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__text {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.modal__close-btn {
+  align-self: flex-end;
 }
