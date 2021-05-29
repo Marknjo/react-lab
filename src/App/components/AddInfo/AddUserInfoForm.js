@@ -1,5 +1,11 @@
-import styles from './AddUserInfoForm.modules.css';
+import styles from './AddUserInfoForm.module.css';
 
-const AddUserInfoForm = function () {};
+const AddUserInfoForm = function () {
+  return (
+    <div>
+      <h2>Form content goes here</h2>
+    </div>
+  );
+};
 
 export default AddUserInfoForm;
