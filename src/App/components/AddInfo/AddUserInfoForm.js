@@ -4,7 +4,7 @@ import styles from './AddUserInfoForm.module.css';
 import FormInput from './FormInput';
 import { useState } from 'react';
 
-const AddUserInfoForm = function () {
+const AddUserInfoForm = function ({ onFetchSubmittedFormInfo }) {
   //data validation state
   const [isInvalid, setIsInvalid] = useState({
     invalid: false,
@@ -57,6 +57,8 @@ const AddUserInfoForm = function () {
       username,
       age,
     };
+
+    onFetchSubmittedFormInfo([data]);
   };
 
   //form input descriptions
@@ -81,12 +83,12 @@ const AddUserInfoForm = function () {
       >
         <FormInput
           value={username}
-          getInputValue={usernameInputHandler}
+          onGetInputValue={usernameInputHandler}
           inputDesc={inputUsernameDt}
         />
         <FormInput
           value={age}
-          getInputValue={ageInputHandler}
+          onGetInputValue={ageInputHandler}
           inputDesc={inputAgeDt}
         />
 

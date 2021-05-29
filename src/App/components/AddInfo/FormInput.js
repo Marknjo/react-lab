@@ -1,8 +1,8 @@
 import styles from './FormInput.module.css';
 
-const FormInput = function ({ inputDesc, value, getInputValue }) {
+const FormInput = function ({ inputDesc, value, onGetInputValue }) {
   const handleInputChange = event => {
-    getInputValue(event.target.value);
+    onGetInputValue(event.target.value);
   };
 
   return (

@@ -23,15 +23,10 @@ const usersInfo_dummy = [
 ];
 */
 
-const ShowInfoLists = function () {
-  const [usersInfo, setUsersInfo] = useState([]);
-
+const ShowInfoLists = function ({ usersInfo }) {
   //handle page initial load state
   //1. users info is empty
   //2. Set message to tell user to add info in the UI
-
-  if (usersInfo.length === 0)
-    setUsersInfo([{ message: 'Fill the form to display age' }]);
 
   return (
     <Card>
