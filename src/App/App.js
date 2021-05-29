@@ -8,8 +8,8 @@ import { useState } from 'react';
 //import { consoleSeparator } from './helpers/consoleSeparator'
 const App = function () {
   //handle errors
-  const [isInvalid, setIsInvalid] = useState({
-    invalid: false,
+  const [isError, setIsError] = useState({
+    valid: false,
     message: '',
   });
   const [usersInfo, setUsersInfo] = useState([]);
@@ -19,7 +19,7 @@ const App = function () {
 
   const fetchSubmittedFormInfoHandler = userInfo => {
     setUsersInfo(prevState =>
-      isInvalid.invalid
+      isError.valid
         ? prevState
         : [userInfo, ...prevState].filter(info => !info.message)
     );
@@ -27,6 +27,9 @@ const App = function () {
 
   //2. Pass the data to the form
   //3. Handle errors if any
+  const handleErrorMessagesHandler = checkStatus => {
+    setIsError(checkStatus);
+  };
 
   return (
     <>
@@ -34,12 +37,13 @@ const App = function () {
         <AddUserInfoForm
           usersInfo={usersInfo}
           onFetchSubmittedFormInfo={fetchSubmittedFormInfoHandler}
+          onHandleErrorMessages={handleErrorMessagesHandler}
         />
         <ShowInfoLists usersInfo={usersInfo} />
       </main>
 
-      <Message />
-      <MessageOverlay />
+      <Message isError={isError} />
+      <MessageOverlay isError={isError} />
     </>
   );
 };

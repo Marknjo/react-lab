@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Card from '../../UI/Card';
 import ShowInfoList from './ShowInfoList';
 import styles from './ShowInfoLists.module.css';

@@ -4,12 +4,12 @@ import styles from './AddUserInfoForm.module.css';
 import FormInput from './FormInput';
 import { useState } from 'react';
 
-const AddUserInfoForm = function ({ usersInfo, onFetchSubmittedFormInfo }) {
+const AddUserInfoForm = function ({
+  onHandleErrorMessages,
+  usersInfo,
+  onFetchSubmittedFormInfo,
+}) {
   //data validation state
-  const [isInvalid, setIsInvalid] = useState({
-    invalid: false,
-    message: '',
-  });
 
   //1. handle username & Age submission
   const [username, setUsername] = useState('');
@@ -33,8 +33,8 @@ const AddUserInfoForm = function ({ usersInfo, onFetchSubmittedFormInfo }) {
     //4. Validate no imput submission
     //5. Validate a single input is not submitted
     if (!username || !age) {
-      setIsInvalid({
-        invalid: true,
+      onHandleErrorMessages({
+        valid: true,
         message:
           '💥 Please enter a valid name and age (fields must not be empty!) 😞',
       });
@@ -43,8 +43,8 @@ const AddUserInfoForm = function ({ usersInfo, onFetchSubmittedFormInfo }) {
 
     //6. Validate negative age submission
     if (!isFinite(age) || +age === 0 || +age < 1) {
-      setIsInvalid({
-        invalid: true,
+      onHandleErrorMessages({
+        valid: true,
         message:
           '💥 Please enter a valid age (Age must be a positive number i.e. 1, 9, or 20 .etc) 😞',
       });
@@ -62,9 +62,9 @@ const AddUserInfoForm = function ({ usersInfo, onFetchSubmittedFormInfo }) {
     // @todo:  implement filtering multiple users
     /* usersInfo.forEach(user => {
       if (user.username === username) {
-        return setIsInvalid(prevState => ({
+        return  onHandleErrorMessages(prevState => ({
           ...prevState,
-          invalid: true,
+          valid: true,
           message:
             "Can't have the same username in the list. Add a unique user!",
         }));
