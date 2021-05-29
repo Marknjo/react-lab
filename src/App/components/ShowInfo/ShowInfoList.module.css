@@ -1,5 +1,5 @@
 .info-lists__list:not(:last-of-type) {
-  margin-bottom: 2rem;
+  margin-bottom: 1.6rem;
 }
 
 .info-list__content {
