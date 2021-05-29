@@ -52,8 +52,6 @@ const AddUserInfoForm = function ({
     }
 
     //Throw error if the submitted user is already in the list
-    // @todo:  implement filtering multiple users
-
     for (const userInfo of usersInfo) {
       if (userInfo.username === username) {
         return onError(prevState => ({
@@ -71,6 +69,10 @@ const AddUserInfoForm = function ({
       username,
       age,
     };
+
+    //clear fields
+    setAge('');
+    setUsername('');
 
     onFetchSubmittedFormInfo(data);
   };
