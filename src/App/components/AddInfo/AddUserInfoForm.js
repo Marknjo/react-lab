@@ -5,12 +5,12 @@ const AddUserInfoForm = function () {
   return (
     <Card>
       <form className={styles['form-control']}>
-        <div className="form-control__group">
+        <div className={styles['form-control__group']}>
           <label htmlFor="username">Username</label>
           <input name="username" type="text" id="username" />
         </div>
-        <div className="form-control__group">
-          <label htmlFor="age">Username</label>
+        <div className={styles['form-control__group']}>
+          <label htmlFor="age">Age (Years)</label>
           <input name="age" type="number" id="age" />
         </div>
       </form>
