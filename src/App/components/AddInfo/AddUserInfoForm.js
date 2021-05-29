@@ -13,6 +13,10 @@ const AddUserInfoForm = function () {
           <label htmlFor="age">Age (Years)</label>
           <input name="age" type="number" id="age" />
         </div>
+
+        <div className={styles['form-control__btn']}>
+          <button type="submit">Add User</button>
+        </div>
       </form>
     </Card>
   );
