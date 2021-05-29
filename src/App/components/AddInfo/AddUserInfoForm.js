@@ -1,4 +1,5 @@
 import Card from '../../UI/Card';
+import Button from '../../UI/Button';
 import styles from './AddUserInfoForm.module.css';
 import FormInput from './FormInput';
 
@@ -23,9 +24,7 @@ const AddUserInfoForm = function () {
         <FormInput inputDesc={inputUsername} />
         <FormInput inputDesc={inputAge} />
 
-        <div className={styles['form-control__btn']}>
-          <button type="submit">Add User</button>
-        </div>
+        <Button>Add User</Button>
       </form>
     </Card>
   );

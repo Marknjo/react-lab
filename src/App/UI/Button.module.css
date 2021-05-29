@@ -1,0 +1,19 @@
+.form-control__btn button {
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.4rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: #350535;
+  font-size: 1.6rem;
+  margin-top: 0.8rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+  transition: all 0.2s;
+}
+
+.form-control__btn button:hover,
+.form-control__btn button:visited {
+  background-color: #530853;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
