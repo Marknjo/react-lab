@@ -4,6 +4,7 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import AuthContext from '../../store/auth-context';
+import Input from '../UI/Input';
 
 const emailReducer = (lastState, action) => {
   switch (action.type) {
@@ -110,35 +111,27 @@ const Login = props => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${
-            emailState.isValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
+        <div className={classes.actions}>
+          <Input
             type="email"
             id="email"
+            label="E-Mail"
+            isValid={emailState.isValid}
             value={emailState.value}
             onChange={emailChangeHandler}
             onBlur={validateEmailHandler}
           />
-        </div>
-        <div
-          className={`${classes.control} ${
-            passwordState.isValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
+
+          <Input
             type="password"
             id="password"
+            label="Password"
+            isValid={passwordState.isValid}
             value={passwordState.value}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
           />
-        </div>
-        <div className={classes.actions}>
+
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
           </Button>
