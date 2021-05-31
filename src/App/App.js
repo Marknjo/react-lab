@@ -1,22 +1,11 @@
-import React, { useContext } from 'react';
+//import { consoleSeparator } from './helpers/consoleSeparator';
 
-import Login from './components/Login/Login';
-import Home from './components/Home/Home';
-import MainHeader from './components/MainHeader/MainHeader';
-import AuthContext from './store/auth-context';
-
-function App() {
-  const ctx = useContext(AuthContext);
-
+const App = function () {
   return (
-    <>
-      <MainHeader />
-      <main>
-        {!ctx.isLoggedIn && <Login />}
-        {ctx.isLoggedIn && <Home />}
-      </main>
-    </>
+    <div>
+      <h2>Start the next Session</h2>
+    </div>
   );
-}
+};
 
 export default App;
