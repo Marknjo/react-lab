@@ -1,11 +1,26 @@
-//import { consoleSeparator } from './helpers/consoleSeparator';
+import React, { useState } from 'react';
 
-const App = function () {
+import AddUser from './components/Users/AddUser';
+import UsersList from './components/Users/UsersList';
+
+function App() {
+  const [usersList, setUsersList] = useState([]);
+
+  const addUserHandler = (uName, uAge) => {
+    setUsersList((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
+    });
+  };
+
   return (
     <div>
-      <h2>Start the next Session</h2>
+      <AddUser onAddUser={addUserHandler} />
+      <UsersList users={usersList} />
     </div>
   );
-};
+}
 
 export default App;
