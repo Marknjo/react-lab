@@ -1,12 +1,18 @@
 import { DUMMY_MEALS } from '../../../data/dummy-meals';
+import Card from '../../UI/Card/Card';
+import MealItem from '../MealItem/MealItem';
 import styles from './AvailableMeals.module.css';
 
 const AvailableMeals = function () {
-  const mealsList = DUMMY_MEALS.map(meal => <li key={meal.id}>{meal.name}</li>);
+  const mealsList = DUMMY_MEALS.map(meal => (
+    <MealItem key={meal.key} description={meal.name} price={meal.price} />
+  ));
 
   return (
     <section className={styles.meals}>
-      <ul>{mealsList}</ul>
+      <Card>
+        <ul>{mealsList}</ul>
+      </Card>
     </section>
   );
 };
