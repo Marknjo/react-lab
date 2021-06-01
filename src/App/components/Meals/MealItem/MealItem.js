@@ -1,4 +1,5 @@
 import styles from './MealItem.module.css';
+import MealItemForm from './MealItemForm';
 
 const MealItem = function ({ title, description, price }) {
   const formatedPrice = new Intl.NumberFormat('en-US', {
@@ -8,13 +9,13 @@ const MealItem = function ({ title, description, price }) {
 
   return (
     <li className={styles.meal}>
-      <div className={styles.description}>
+      <div>
         <h3>{title}</h3>
-        <div>{description}</div>
+        <div className={styles.description}>{description}</div>
         <div className={styles.price}>{formatedPrice}</div>
       </div>
       <div>
-        <form action="POST"></form>
+        <MealItemForm />
       </div>
     </li>
   );
