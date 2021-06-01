@@ -5,7 +5,12 @@ import styles from './AvailableMeals.module.css';
 
 const AvailableMeals = function () {
   const mealsList = DUMMY_MEALS.map(meal => (
-    <MealItem key={meal.key} description={meal.name} price={meal.price} />
+    <MealItem
+      title={meal.name}
+      key={meal.key}
+      description={meal.name}
+      price={meal.price}
+    />
   ));
 
   return (
