@@ -1,10 +1,12 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
+import Header from './components/Layout/Header';
+
 const App = function () {
   return (
-    <div>
-      <h2>Start the next Session</h2>
-    </div>
+    <>
+      <Header />
+    </>
   );
 };
 
