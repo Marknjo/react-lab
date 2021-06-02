@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import CartContext from '../../../store/cart-context';
 import styles from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
 
@@ -7,6 +9,19 @@ const MealItem = function ({ title, description, price, id }) {
     currency: 'USD',
   }).format(price);
 
+  const cartCtx = useContext(CartContext);
+
+  const handleAddItemToCart = cartItems => {
+    cartCtx.addItem({
+      customerId: Math.random().toString().slice(2, 20),
+      id,
+      title,
+      description,
+      price,
+      amount: cartItems,
+    });
+  };
+
   return (
     <li className={styles.meal}>
       <div>
@@ -15,7 +30,7 @@ const MealItem = function ({ title, description, price, id }) {
         <div className={styles.price}>{formatedPrice}</div>
       </div>
       <div>
-        <MealItemForm id={id} />
+        <MealItemForm id={id} onAddItemToCart={handleAddItemToCart} />
       </div>
     </li>
   );

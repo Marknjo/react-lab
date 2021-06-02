@@ -1,16 +1,32 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+
 import Input from '../../UI/Input/Input';
 import styles from './MealItemForm.module.css';
 
-const MealItemForm = function ({ id }) {
+const MealItemForm = function ({ id, onAddItemToCart }) {
   const mealAmounts = useRef();
+  const [isAmountInvalid, setIsAmountInvalid] = useState(false);
 
   const submitItemHandler = event => {
     event.preventDefault();
     //1. grab the item from the refs
-    console.log(mealAmounts.current.value);
+    const inputItemsAmount = +mealAmounts.current.value;
     //2. sanitize the item
-    //3. update the context
+    if (
+      !inputItemsAmount ||
+      inputItemsAmount > 5 ||
+      typeof inputItemsAmount !== 'number' ||
+      inputItemsAmount === 0
+    ) {
+      setIsAmountInvalid(true);
+      return;
+    }
+    //3. add to cart
+
+    onAddItemToCart(inputItemsAmount);
+
+    //4. Reset the amount count
+    mealAmounts.current.value = '1';
   };
 
   return (
@@ -28,6 +44,7 @@ const MealItemForm = function ({ id }) {
         }}
       />
       <button>+ Add</button>
+      {isAmountInvalid && <p>Add a valid item amount.</p>}
     </form>
   );
 };

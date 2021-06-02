@@ -11,9 +11,8 @@ const cartReducer = (prevState, action) => {
     case 'ADD_ITEM':
       const updatedTotalAmount =
         prevState.totalAmount + action.item.price * action.item.amount;
-
       return {
-        item: [action.item, ...prevState.items],
+        items: [action.item, ...prevState.items],
         totalAmount: updatedTotalAmount,
       };
 
