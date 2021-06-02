@@ -1,3 +1,4 @@
+import Modal from '../UI/Modal/Modal';
 import styles from './Cart.module.css';
 
 const Cart = function () {
@@ -9,7 +10,7 @@ const Cart = function () {
     </ul>
   );
   return (
-    <div>
+    <Modal>
       {cartItems}
       <div className={styles.total}>
         <span>Total Amount</span>
@@ -23,7 +24,7 @@ const Cart = function () {
           Order
         </button>
       </div>
-    </div>
+    </Modal>
   );
 };
 
