@@ -8,6 +8,10 @@ import Meals from './components/Meals/Meals';
 const App = function () {
   const [cartIsShown, setCartIsShown] = useState(false);
 
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
@@ -15,7 +19,7 @@ const App = function () {
   return (
     <>
       {cartIsShown && <Cart onHideCart={hideCartHandler} />}
-      <Header />
+      <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
       </main>
