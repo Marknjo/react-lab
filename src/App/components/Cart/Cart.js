@@ -10,7 +10,12 @@ const Cart = function ({ onHideCart }) {
   const hasItems = cartCtx.items.length > 0;
   const formatedTotalAmount = formatNumber(cartCtx.totalAmount);
 
-  const cartItemRemoveHandler = id => {};
+  const cartItemRemoveHandler = id => {
+    //validate the id
+    if (!id) return;
+    //remove item
+    cartCtx.removeItem(id);
+  };
 
   const cartItemAddHandler = item => {
     const updatedItem = {

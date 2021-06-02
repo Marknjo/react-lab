@@ -14,7 +14,6 @@ const cartReducer = (prevState, action) => {
         prevState.totalAmount + action.item.price * action.item.amount;
 
       //Don't add two similar items in the cart
-      console.log(action.item);
       //Instead, update the amount
       //1. Find the id of the current element in the state (If it is there)
       const existingCartItemIndex = prevState.items.findIndex(
@@ -54,6 +53,54 @@ const cartReducer = (prevState, action) => {
         totalAmount: updatedTotalAmount,
       };
 
+    case 'REMOVE_ITEM':
+      const currentItem = prevState.items.filter(
+        item => item.id === action.id
+      )[0];
+
+      //1. Update total items on remove
+      const updatedTotalAmountInCart =
+        prevState.totalAmount - currentItem.price;
+
+      //2. updateItems in the cart
+      //2.1. Decrease items if items are more than 1
+      //2.2. Remove the item if items equal to 1
+
+      //Update logic
+      //1. Find the id of incoming item
+      const curItemIndex = prevState.items.findIndex(
+        item => item.id === action.id
+      );
+
+      //2. Grab the item in the state (Context - PrevState === currentItem)
+
+      let updatedItemsInCart;
+
+      if (+currentItem.amount > 1) {
+        //2.2. Items in the cart are greater than 1
+        //1. reduced the amount value
+        const removedItem = {
+          ...currentItem,
+          amount: currentItem.amount - 1,
+        };
+
+        //2. copy the existing state
+        updatedItemsInCart = [...prevState.items];
+
+        //3. swap the items
+        updatedItemsInCart[curItemIndex] = removedItem;
+      } else {
+        //2.1. There is only one item in the cart
+        updatedItemsInCart = [...prevState.items].filter(
+          item => item.id !== action.id
+        );
+      }
+
+      return {
+        items: updatedItemsInCart,
+        totalAmount: updatedTotalAmountInCart,
+      };
+
     default:
       return prevState;
   }
@@ -72,7 +119,12 @@ const CartProvider = function ({ children }) {
     });
   };
 
-  const removeItemFromCartHander = () => {};
+  const removeItemFromCartHander = id => {
+    dispatchCartAction({
+      type: 'REMOVE_ITEM',
+      id,
+    });
+  };
 
   const cartContext = {
     items: cartState.items,
