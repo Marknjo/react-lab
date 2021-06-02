@@ -2,7 +2,7 @@ import { formatNumber } from '../../helpers/helperMethods';
 import classes from './CartItem.module.css';
 
 const CartItem = function ({ title, price, amount, onRemove, onAdd }) {
-  const formatedPrice = formatNumber(price * amount);
+  const formatedPrice = formatNumber(price);
 
   return (
     <li className={classes['cart-item']}>
