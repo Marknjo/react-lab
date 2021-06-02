@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { formatNumber } from '../../helpers/helperMethods';
 import CartContext from '../../store/cart-context';
 import Modal from '../UI/Modal/Modal';
 import styles from './Cart.module.css';
@@ -6,6 +7,12 @@ import CartItem from './CartItem';
 
 const Cart = function ({ onHideCart }) {
   const cartCtx = useContext(CartContext);
+  const hasItems = cartCtx.items.length > 0;
+  const formatedTotalAmount = formatNumber(cartCtx.totalAmount);
+
+  const reduceItemsFromCartHandler = () => {};
+
+  const addItemsToCartHandler = () => {};
 
   const cartItems = (
     <ul className={styles['cart-items']}>
@@ -16,8 +23,8 @@ const Cart = function ({ onHideCart }) {
             price={item.price}
             title={item.title}
             amount={item.amount}
-            onClick={''}
-            onRemove={''}
+            onAdd={addItemsToCartHandler}
+            onRemove={reduceItemsFromCartHandler}
           />
         );
       })}
@@ -29,22 +36,42 @@ const Cart = function ({ onHideCart }) {
       {cartItems}
 
       <div className={styles.total}>
-        <span>Total Amount</span>
-        <span>35.62</span>
+        {hasItems ? (
+          <>
+            <span>Total Amount</span>
+            <span>{formatedTotalAmount}</span>{' '}
+          </>
+        ) : (
+          <>
+            <span> Opps! Your cart is empty. (☞ﾟヮﾟ)☞ </span>
+            <div className={styles.actions}>
+              <button
+                className={styles['button--alt']}
+                type="button"
+                onClick={onHideCart}
+              >
+                Shop Now
+              </button>
+            </div>
+          </>
+        )}
       </div>
 
       <div className={styles.actions}>
-        <button
-          className={styles['button--alt']}
-          type="button"
-          onClick={onHideCart}
-        >
-          Close
-        </button>
-
-        <button className={styles.button} type="button">
-          Order
-        </button>
+        {hasItems && (
+          <>
+            <button
+              className={styles['button--alt']}
+              type="button"
+              onClick={onHideCart}
+            >
+              Close
+            </button>
+            <button className={styles.button} type="button">
+              Order
+            </button>
+          </>
+        )}
       </div>
     </Modal>
   );
