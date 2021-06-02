@@ -12,7 +12,14 @@ const Cart = function ({ onHideCart }) {
 
   const cartItemRemoveHandler = id => {};
 
-  const cartItemAddHandler = item => {};
+  const cartItemAddHandler = item => {
+    const updatedItem = {
+      ...item,
+      amount: 1,
+    };
+
+    cartCtx.addItem(updatedItem);
+  };
 
   const cartItems = (
     <ul className={styles['cart-items']}>
@@ -23,8 +30,8 @@ const Cart = function ({ onHideCart }) {
             price={item.price}
             title={item.title}
             amount={item.amount}
-            onAdd={cartItemAddHandler.bind(null, item.id)}
-            onRemove={cartItemRemoveHandler.bind(null, item)}
+            onAdd={cartItemAddHandler.bind(null, item)}
+            onRemove={cartItemRemoveHandler.bind(null, item.id)}
           />
         );
       })}

@@ -14,7 +14,7 @@ const cartReducer = (prevState, action) => {
         prevState.totalAmount + action.item.price * action.item.amount;
 
       //Don't add two similar items in the cart
-
+      console.log(action.item);
       //Instead, update the amount
       //1. Find the id of the current element in the state (If it is there)
       const existingCartItemIndex = prevState.items.findIndex(
