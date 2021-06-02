@@ -1,8 +1,12 @@
 import styles from './Modal.module.css';
 import ReactDOM from 'react-dom';
 
-const Backdrop = function () {
-  return <div className={styles.backdrop}>{/* Backdrop */}</div>;
+const Backdrop = function ({ closeModal }) {
+  return (
+    <div onClick={closeModal} className={styles.backdrop}>
+      {/* Backdrop */}
+    </div>
+  );
 };
 
 const ModalOverlay = function ({ children }) {
@@ -15,10 +19,23 @@ const ModalOverlay = function ({ children }) {
 
 const portalElements = document.getElementById('overlays');
 
-const Modal = function ({ children }) {
+const Modal = function ({ children, onCloseModal }) {
+  const closeModalHandler = event => {
+    if (event.key === 'Escape') {
+      onCloseModal();
+    }
+
+    event.stopImmediatePropagation();
+  };
+
+  window.addEventListener('keydown', closeModalHandler);
+
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop />, portalElements)}
+      {ReactDOM.createPortal(
+        <Backdrop closeModal={onCloseModal} />,
+        portalElements
+      )}
 
       {ReactDOM.createPortal(
         <ModalOverlay>{children} </ModalOverlay>,
