@@ -1,13 +1,11 @@
 import { useContext } from 'react';
+import { formatNumber } from '../../../helpers/helperMethods';
 import CartContext from '../../../store/cart-context';
 import styles from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
 
 const MealItem = function ({ title, description, price, id }) {
-  const formatedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(price);
+  const formatedPrice = formatNumber(price);
 
   const cartCtx = useContext(CartContext);
 
