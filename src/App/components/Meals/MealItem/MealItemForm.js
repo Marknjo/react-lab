@@ -1,13 +1,25 @@
+import { useRef } from 'react';
 import Input from '../../UI/Input/Input';
 import styles from './MealItemForm.module.css';
 
-const MealItemForm = function () {
+const MealItemForm = function ({ id }) {
+  const mealAmounts = useRef();
+
+  const submitItemHandler = event => {
+    event.preventDefault();
+    //1. grab the item from the refs
+    console.log(mealAmounts.current.value);
+    //2. sanitize the item
+    //3. update the context
+  };
+
   return (
-    <form action="GET" className={styles.form}>
+    <form action="GET" className={styles.form} onSubmit={submitItemHandler}>
       <Input
-        label="Amaount"
+        ref={mealAmounts}
+        label="Amount"
         input={{
-          id: 'amount',
+          id: id,
           type: 'number',
           min: '1',
           max: '5',

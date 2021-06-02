@@ -1,7 +1,7 @@
 import styles from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
 
-const MealItem = function ({ title, description, price }) {
+const MealItem = function ({ title, description, price, id }) {
   const formatedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -15,7 +15,7 @@ const MealItem = function ({ title, description, price }) {
         <div className={styles.price}>{formatedPrice}</div>
       </div>
       <div>
-        <MealItemForm />
+        <MealItemForm id={id} />
       </div>
     </li>
   );
