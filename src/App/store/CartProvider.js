@@ -77,7 +77,7 @@ const cartReducer = (prevState, action) => {
       let updatedItemsInCart;
 
       if (+currentItem.amount > 1) {
-        //2.2. Items in the cart are greater than 1
+        //2.1. Items in the cart are greater than 1
         //1. reduced the amount value
         const removedItem = {
           ...currentItem,
@@ -90,7 +90,7 @@ const cartReducer = (prevState, action) => {
         //3. swap the items
         updatedItemsInCart[curItemIndex] = removedItem;
       } else {
-        //2.1. There is only one item in the cart
+        //2.2. There is only one item in the cart
         updatedItemsInCart = [...prevState.items].filter(
           item => item.id !== action.id
         );
