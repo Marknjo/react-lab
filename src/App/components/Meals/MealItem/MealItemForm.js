@@ -30,7 +30,7 @@ const MealItemForm = function ({ id, onAddItemToCart }) {
   };
 
   return (
-    <form action="GET" className={styles.form} onSubmit={submitItemHandler}>
+    <form className={styles.form} onSubmit={submitItemHandler}>
       <Input
         ref={mealAmounts}
         label="Amount"
