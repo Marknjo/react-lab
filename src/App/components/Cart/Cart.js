@@ -10,21 +10,21 @@ const Cart = function ({ onHideCart }) {
   const hasItems = cartCtx.items.length > 0;
   const formatedTotalAmount = formatNumber(cartCtx.totalAmount);
 
-  const reduceItemsFromCartHandler = () => {};
+  const cartItemRemoveHandler = id => {};
 
-  const addItemsToCartHandler = () => {};
+  const cartItemAddHandler = item => {};
 
   const cartItems = (
     <ul className={styles['cart-items']}>
       {cartCtx.items.map(item => {
         return (
           <CartItem
-            key={item.customerId}
+            key={item.id}
             price={item.price}
             title={item.title}
             amount={item.amount}
-            onAdd={addItemsToCartHandler}
-            onRemove={reduceItemsFromCartHandler}
+            onAdd={cartItemAddHandler.bind(null, item.id)}
+            onRemove={cartItemRemoveHandler.bind(null, item)}
           />
         );
       })}
