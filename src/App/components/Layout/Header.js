@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import mealsImg from '../../../assets/meals.jpg';
+import mealsImg from '../../assets/meals.jpg';
 import HeaderCartButton from './HeaderCartButton';
 
 const Header = function ({ onShowCart }) {
