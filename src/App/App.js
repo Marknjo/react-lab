@@ -1,6 +1,6 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -24,7 +24,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchMovieHandler = async function () {
+  const fetchMovieHandler = useCallback(async function () {
     try {
       setIsLoading(true);
       const url = 'https://swapi.dev/api/films/';
@@ -58,7 +58,11 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchMovieHandler();
+  }, [fetchMovieHandler]);
 
   let content = <p>Found no movie!</p>;
 
