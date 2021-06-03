@@ -1,10 +1,11 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
-import React from 'react';
-import Firebase from './Firebase/Firebase';
-
-function App() {
-  return <Firebase />;
-}
+const App = function () {
+  return (
+    <div>
+      <h2>Start the next Session</h2>
+    </div>
+  );
+};
 
 export default App;
