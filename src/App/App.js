@@ -1,11 +1,16 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
-const App = function () {
+import React from 'react';
+import BackwardCounter from './components/BackwardCounter';
+import ForwardCounter from './components/ForwardCounter';
+
+function App() {
   return (
-    <div>
-      <h2>Start the next Session</h2>
-    </div>
+    <React.Fragment>
+      <ForwardCounter />
+      <BackwardCounter />
+    </React.Fragment>
   );
-};
+}
 
 export default App;
