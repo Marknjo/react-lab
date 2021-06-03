@@ -1,24 +1,26 @@
 import { useState } from 'react';
-import { FIREBASE_URL } from '../../Configs/config';
 
 import Section from '../UI/Section';
 import TaskForm from './TaskForm';
 
-const NewTask = props => {
+const NewTask = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const enterTaskHandler = async taskText => {
+  const enterTaskHandler = async (taskText) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${FIREBASE_URL}tasks.json`, {
-        method: 'POST',
-        body: JSON.stringify({ text: taskText }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        'https://react-http-6b4a6.firebaseio.com/tasks.json',
+        {
+          method: 'POST',
+          body: JSON.stringify({ text: taskText }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Request failed!');

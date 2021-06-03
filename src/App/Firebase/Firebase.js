@@ -2,34 +2,43 @@ import React, { useEffect, useState } from 'react';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
-import useHttp from './hooks/use-http';
 
 import './Firebase.css';
 import { FIREBASE_URL } from './Configs/config';
 
 function Firebase() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
 
-  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
+  const fetchTasks = async taskText => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${FIREBASE_URL}tasks.json`);
 
-  useEffect(() => {
-    const transformTasks = tasksObj => {
+      if (!response.ok) {
+        throw new Error('Request failed!');
+      }
+
+      const data = await response.json();
+
       const loadedTasks = [];
 
-      for (const taskKey in tasksObj) {
-        loadedTasks.push({ id: taskKey, text: tasksObj[taskKey].text });
+      for (const taskKey in data) {
+        loadedTasks.push({ id: taskKey, text: data[taskKey].text });
       }
 
       setTasks(loadedTasks);
-    };
+    } catch (err) {
+      setError(err.message || 'Something went wrong!');
+    }
+    setIsLoading(false);
+  };
 
-    fetchTasks(
-      {
-        url: `${FIREBASE_URL}tasks.json`,
-      },
-      transformTasks
-    );
-  }, [fetchTasks]);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   const taskAddHandler = task => {
     setTasks(prevTasks => prevTasks.concat(task));
