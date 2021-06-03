@@ -1,11 +1,15 @@
-# :rocket: A Practical assignement
+# :rocket: Handling Async in React Apps
 
-Add Note Here
+This was a leaning session on how to handle asynchronous calls in React Apps.
 
 ## :balloon: Skills Gained in the Session
 
-- Note Skills
+- Handling calls on button click
+- Handling GET requests to an API
+- Storing data to database - test it using Firebase
+- How to handle side effects using useEffect and useCallback.
+- Handling user feedback - handling loading spinner, showing errors, showing default message when data fetching is controlled using a user action, and lastly use showing fetched data.
 
 ## :bookmark_tabs: Footnotes
 
-- Note challenges and things worth noting
+- Handling asynchronouns calls in React, works in the same manners as in the standard JavaScript.
