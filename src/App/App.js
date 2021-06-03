@@ -1,6 +1,6 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -22,12 +22,22 @@ import './App.css';
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchMovieHandler = async function () {
     try {
       setIsLoading(true);
+      const url = 'https://swapi.dev/api/films/';
+      const filmsResp = await fetch(url);
 
-      const filmsResp = await fetch('https://swapi.dev/api/films/');
+      if (!filmsResp.ok) {
+        if (filmsResp.status === 404)
+          throw new Error(
+            `${filmsResp.status}: Cannot retrive movies using (${url}) URL.`
+          );
+
+        throw new Error(`${filmsResp.status}: Something Went Wrong`);
+      }
 
       let { results } = await filmsResp.json();
 
@@ -43,22 +53,33 @@ function App() {
       setMovies(results);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error(`${error} 💥💥💥`);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  useEffect(() => {}, []);
+  let content = <p>Found no movie!</p>;
+
+  if (movies.length > 0) {
+    content = <MoviesList movies={movies} />;
+  }
+
+  if (error) {
+    content = <p>{error}</p>;
+  }
+
+  if (isLoading) {
+    content = 'Loading...';
+  }
 
   return (
     <Fragment>
       <section>
         <button onClick={fetchMovieHandler}>Fetch Movies</button>
       </section>
-      <section>
-        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && <p>Found No Movies!</p>}
-        {isLoading && <p>Loading...</p>}
-      </section>
+      <section>{content}</section>
     </Fragment>
   );
 }
