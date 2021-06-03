@@ -5,6 +5,7 @@ import NewTask from './components/NewTask/NewTask';
 import useHttp from './hooks/use-http';
 
 import './Firebase.css';
+import { FIREBASE_URL } from './Configs/config';
 
 function Firebase() {
   const [tasks, setTasks] = useState([]);
@@ -23,7 +24,9 @@ function Firebase() {
     };
 
     fetchTasks(
-      { url: 'https://react-http-6b4a6.firebaseio.com/tasks.json' },
+      {
+        url: `${FIREBASE_URL}tasks.json`,
+      },
       transformTasks
     );
   }, [fetchTasks]);
