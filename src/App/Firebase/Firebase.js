@@ -5,40 +5,26 @@ import NewTask from './components/NewTask/NewTask';
 
 import './Firebase.css';
 import { FIREBASE_URL } from './Configs/config';
+import useHttp from './hooks/use-http';
 
 function Firebase() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
 
-  const fetchTasks = async taskText => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`${FIREBASE_URL}tasks.json`);
+  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-
-      const data = await response.json();
-
+  useEffect(() => {
+    const transformTasks = taskObj => {
       const loadedTasks = [];
 
-      for (const taskKey in data) {
-        loadedTasks.push({ id: taskKey, text: data[taskKey].text });
+      for (const taskKey in taskObj) {
+        loadedTasks.push({ id: taskKey, text: taskObj[taskKey].text });
       }
 
       setTasks(loadedTasks);
-    } catch (err) {
-      setError(err.message || 'Something went wrong!');
-    }
-    setIsLoading(false);
-  };
+    };
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+    fetchTasks(`${FIREBASE_URL}tasks.json`, transformTasks);
+  }, [fetchTasks]);
 
   const taskAddHandler = task => {
     setTasks(prevTasks => prevTasks.concat(task));
