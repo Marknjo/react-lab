@@ -1,6 +1,7 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
 import { Fragment, useCallback, useEffect, useState } from 'react';
+import AddMovie from './components/AddMovie';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -22,47 +23,65 @@ import './App.css';
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
-  const fetchMovieHandler = useCallback(async function () {
+  const fetchMoviesHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsLoading(true);
-      const url = 'https://swapi.dev/api/films/';
-      const filmsResp = await fetch(url);
+      /* const response = await fetch(
+        'https://react-http-6b4a6.firebaseio.com/movies.json'
+      ); */
 
-      if (!filmsResp.ok) {
-        if (filmsResp.status === 404)
-          throw new Error(
-            `${filmsResp.status}: Cannot retrive movies using (${url}) URL.`
-          );
-
-        throw new Error(`${filmsResp.status}: Something Went Wrong`);
+      const response = await fetch(
+        'https://react-http-be337-default-rtdb.firebaseio.com/movies.json'
+      );
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
       }
 
-      let { results } = await filmsResp.json();
+      const data = await response.json();
 
-      results = results.map(movieData => {
-        return {
-          id: movieData.episode_id,
-          title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date,
-        };
-      });
+      const loadedMovies = [];
 
-      setMovies(results);
-      setIsLoading(false);
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openingText: data[key].openingText,
+          releaseDate: data[key].releaseDate,
+        });
+      }
+
+      setMovies(loadedMovies);
     } catch (error) {
-      console.error(`${error} 💥💥💥`);
       setError(error.message);
-    } finally {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
-    fetchMovieHandler();
-  }, [fetchMovieHandler]);
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
+
+  async function addMovieHandler(movie) {
+    try {
+      const response = await fetch(
+        'https://react-http-be337-default-rtdb.firebaseio.com/movies.json',
+        {
+          method: 'POST',
+          body: JSON.stringify(movie),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(`${error} 💥💥`);
+    }
+  }
 
   let content = <p>Found no movie!</p>;
 
@@ -81,7 +100,10 @@ function App() {
   return (
     <Fragment>
       <section>
-        <button onClick={fetchMovieHandler}>Fetch Movies</button>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
+      <section>
+        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>{content}</section>
     </Fragment>
