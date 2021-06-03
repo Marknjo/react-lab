@@ -1,4 +1,4 @@
-import useCounter from '../hooks/use-counter';
+import useCounter from './hooks/use-counter';
 
 import Card from './Card';
 
