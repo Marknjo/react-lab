@@ -14,15 +14,14 @@ const useHttp = function () {
 
       let fetchType =
         typeof requestConfig === 'string'
-          ? requestConfig
-          : (requestConfig.url,
-            {
+          ? fetch(requestConfig)
+          : fetch(requestConfig.url, {
               method: requestConfig.method,
               headers: requestConfig.headers,
               body: JSON.stringify(requestConfig.body),
             });
 
-      const response = await fetch(fetchType);
+      const response = await fetchType;
 
       if (!response.ok) {
         throw new Error('Request failed!');
