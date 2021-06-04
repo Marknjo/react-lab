@@ -1,51 +1,62 @@
 import { useContext } from 'react';
+import { FIREBASE_URL } from '../../Configs/config';
 import { formatNumber } from '../../helpers/helperMethods';
+import useHttp from '../../hooks/use-http';
 import CartContext from '../../store/cart-context';
 import Modal from '../UI/Modal/Modal';
 import styles from './Cart.module.css';
-import CartItem from './CartItem';
+import CartLists from './CartLists';
 
 const Cart = function ({ onHideCart }) {
   const cartCtx = useContext(CartContext);
   const hasItems = cartCtx.items.length > 0;
   const formatedTotalAmount = formatNumber(cartCtx.totalAmount);
 
-  const cartItemRemoveHandler = id => {
-    //validate the id
-    if (!id) return;
-    //remove item
-    cartCtx.removeItem(id);
-  };
+  const { isLoading, error, sendRequest: placeOrder } = useHttp();
+  const orderSubmitHandler = event => {
+    //1.Prevent Default
+    event.preventDefault();
 
-  const cartItemAddHandler = item => {
-    const updatedItem = {
-      ...item,
-      amount: 1,
+    //2. Send Values
+    //2.1. Use usHttp method -> send a single object {userId: , order: }
+
+    const orderQuantity = cartCtx.items.reduce((curQty, order) => {
+      return curQty + order.amount;
+    }, 0);
+
+    const orderedItemsMapped = cartCtx.items.map(item => {
+      return {
+        itemId: item.id,
+        name: item.title,
+        price: item.price,
+        quantity: item.amount,
+      };
+    });
+
+    const orderData = {
+      userId: 'Mark',
+      order: orderedItemsMapped,
+      orderQuantity,
     };
 
-    cartCtx.addItem(updatedItem);
+    placeOrder(
+      {
+        url: `${FIREBASE_URL}orders.json`,
+        method: 'POST',
+        body: orderData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+      data => {
+        console.log(data);
+      }
+    );
   };
-
-  const cartItems = (
-    <ul className={styles['cart-items']}>
-      {cartCtx.items.map(item => {
-        return (
-          <CartItem
-            key={item.id}
-            price={item.price}
-            title={item.title}
-            amount={item.amount}
-            onAdd={cartItemAddHandler.bind(null, item)}
-            onRemove={cartItemRemoveHandler.bind(null, item.id)}
-          />
-        );
-      })}
-    </ul>
-  );
 
   return (
     <Modal onCloseModal={onHideCart}>
-      {cartItems}
+      <CartLists className={styles['cart-items']} />
 
       <div className={styles.total}>
         {hasItems ? (
@@ -79,9 +90,12 @@ const Cart = function ({ onHideCart }) {
             >
               Close
             </button>
-            <button className={styles.button} type="button">
-              Order
-            </button>
+
+            <form onSubmit={orderSubmitHandler}>
+              <button className={styles.button} type="submit">
+                Order
+              </button>
+            </form>
           </>
         )}
       </div>
