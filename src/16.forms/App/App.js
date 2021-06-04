@@ -1,9 +1,12 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
 
+import './App.css';
+import BasicForm from './components/BasicForm';
+
 const App = function () {
   return (
-    <div>
-      <h2>Start the next Session</h2>
+    <div className="app">
+      <BasicForm />
     </div>
   );
 };
