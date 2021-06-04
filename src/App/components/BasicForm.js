@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useInput from '../hook/use-input';
 
 const nameValidationLogic = value =>
@@ -59,6 +58,7 @@ const BasicForm = props => {
 
     //Validations: FirstName, LastName & Email
     if (
+      !formIsValid ||
       !enteredFirstNameIsValid ||
       !enteredLastNameIsValid ||
       !enteredEmailIsValid
