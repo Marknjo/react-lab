@@ -89,25 +89,26 @@ const OrderReceipt = function () {
                 <span>TAX 16%</span> <span>$1.00</span>
               </p>
             </section>
-
-            <section className={styles['order__total']}>
-              <p>
-                <span>TOTAL</span> <span>$13.00</span>
-              </p>
-            </section>
           </div>
-          <footer className={styles['order__footer']}>
-            <p>Terms and Conditions Apply</p>
-            <p> &copy; copyright, {date} </p>
-          </footer>
         </div>
       </div>
+
+      <section className={styles['order__total']}>
+        <p>
+          <span>TOTAL AMOUNT</span> <span>$13.00</span>
+        </p>
+      </section>
 
       <div className={styles['order__actions']}>
         <button className={styles['order__close']} type="button">
           Close
         </button>
       </div>
+
+      <footer className={styles['order__footer']}>
+        <p>Terms and Conditions Apply</p>
+        <p> &copy; copyright, {date} </p>
+      </footer>
     </>
   );
 };
