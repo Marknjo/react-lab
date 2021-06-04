@@ -1,28 +1,35 @@
+import { useEffect } from 'react';
 import useInput from '../hook/use-input';
+
+const nameValidationLogic = value =>
+  value.trim() !== '' && value.trim().length > 3;
+
+const emailValidationLogic = value =>
+  value.trim().includes('@') && value.trim().length > 8 && value.trim() !== '';
 
 const BasicForm = props => {
   //Handle form inputs using the useInput logic
-  //1. First name inputs Logic
+  //1. First Name inputs Logic
   const {
-    value: enteredFirstnameValue,
-    isValid: enteredFirstnameIsValid,
-    hasError: firstnameInputHasError,
-    inputBlurHandler: firstnameBlurHandler,
-    valueChangeHandler: firstnameChangeHandler,
-    reset: resetFirstnameInput,
-    defaultOrErrorStyles: firstnameFieldStyles,
-  } = useInput(value => value.trim() !== '' && value.trim().length > 3);
+    value: enteredFirstNameValue,
+    isValid: enteredFirstNameIsValid,
+    hasError: firstNameInputHasError,
+    inputBlurHandler: firstNameBlurHandler,
+    valueChangeHandler: firstNameChangeHandler,
+    reset: resetFirstNameInput,
+    defaultOrErrorStyles: firstNameFieldStyles,
+  } = useInput(nameValidationLogic);
 
-  //2. Lastname input logic
+  //2. LastName input logic
   const {
-    value: enteredLastnameValue,
-    isValid: enteredLastnameIsValid,
-    hasError: lastnameInputHasError,
-    inputBlurHandler: lastnameBlurHandler,
-    valueChangeHandler: lastnameChangeHandler,
-    reset: resetLastnameInput,
-    defaultOrErrorStyles: lastnameFieldStyles,
-  } = useInput(value => value.trim() !== '' && value.trim().length > 3);
+    value: enteredLastNameValue,
+    isValid: enteredLastNameIsValid,
+    hasError: lastNameInputHasError,
+    inputBlurHandler: lastNameBlurHandler,
+    valueChangeHandler: lastNameChangeHandler,
+    reset: resetLastNameInput,
+    defaultOrErrorStyles: lastNameFieldStyles,
+  } = useInput(nameValidationLogic);
 
   //3. Email Address input logic
   const {
@@ -33,16 +40,15 @@ const BasicForm = props => {
     valueChangeHandler: emailChangehandler,
     reset: resetEmailInput,
     defaultOrErrorStyles: emailFieldStyles,
-  } = useInput(
-    value =>
-      value.trim().includes('@') &&
-      value.trim().length > 8 &&
-      value.trim() !== ''
-  );
+  } = useInput(emailValidationLogic);
 
   //Form validity
   let formIsValid = false;
-  if (firstnameInputHasError && lastnameInputHasError && emailInputHasError) {
+  if (
+    enteredFirstNameIsValid &&
+    enteredLastNameIsValid &&
+    enteredEmailIsValid
+  ) {
     formIsValid = true;
   }
 
@@ -51,62 +57,59 @@ const BasicForm = props => {
     //1.prevent form submission
     event.preventDefault();
 
-    //2.1. Validate First name input
-    //(Last name and first name have a similar way of validation)
-    //2.2. Validate Last name input
-    //2.3. validate email input
+    //Validations: FirstName, LastName & Email
     if (
-      !enteredFirstnameIsValid ||
-      !enteredLastnameIsValid ||
+      !enteredFirstNameIsValid ||
+      !enteredLastNameIsValid ||
       !enteredEmailIsValid
     ) {
       return;
     }
 
     //3. Submit data after all validations have passed (For nor console log)
-    console.log(enteredFirstnameValue);
-    console.log(enteredLastnameValue);
+    console.log(enteredFirstNameValue);
+    console.log(enteredLastNameValue);
     console.log(enteredEmailValue);
 
     //4. Reset form fields
-    resetFirstnameInput();
-    resetLastnameInput();
+    resetFirstNameInput();
+    resetLastNameInput();
     resetEmailInput();
   };
 
   return (
     <form onSubmit={submitFormHandler}>
       <div className="control-group">
-        <div className={firstnameFieldStyles()}>
+        <div className={firstNameFieldStyles()}>
           <label htmlFor="firstname">First Name</label>
 
           <input
             type="text"
             id="firstname"
             name="firstname"
-            onBlur={firstnameBlurHandler}
-            onChange={firstnameChangeHandler}
-            value={enteredFirstnameValue}
+            onBlur={firstNameBlurHandler}
+            onChange={firstNameChangeHandler}
+            value={enteredFirstNameValue}
           />
 
-          {firstnameInputHasError && (
-            <p className="error-text">First Name field is invalid.</p>
+          {firstNameInputHasError && (
+            <p className="error-text">First name field is invalid.</p>
           )}
         </div>
 
-        <div className={lastnameFieldStyles()}>
-          <label htmlFor="lastname">Last Name</label>
+        <div className={lastNameFieldStyles()}>
+          <label htmlFor="lastname">Last name</label>
 
           <input
             type="text"
             name="lastname"
             id="lastname"
-            onBlur={lastnameBlurHandler}
-            onChange={lastnameChangeHandler}
-            value={enteredLastnameValue}
+            onBlur={lastNameBlurHandler}
+            onChange={lastNameChangeHandler}
+            value={enteredLastNameValue}
           />
 
-          {lastnameInputHasError && (
+          {lastNameInputHasError && (
             <p className="error-text">Last name field is invalid.</p>
           )}
         </div>
@@ -127,7 +130,7 @@ const BasicForm = props => {
       </div>
 
       <div className="form-actions">
-        <button disabled={formIsValid}>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
