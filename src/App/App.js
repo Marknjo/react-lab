@@ -1,11 +1,12 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
-import SimpleInput from './components/SimpleInput';
+
 import './App.css';
+import BasicForm from './components/BasicForm';
 
 const App = function () {
   return (
     <div className="app">
-      <SimpleInput />
+      <BasicForm />
     </div>
   );
 };

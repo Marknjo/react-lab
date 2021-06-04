@@ -7,7 +7,7 @@ const SimpleInput = props => {
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
-    reset: resetEnteredNameInput,
+    reset: resetNameInput,
     defaultOrErrorStyles: nameInputStyles,
   } = useInput(value => value.trim() !== '');
 
@@ -17,7 +17,7 @@ const SimpleInput = props => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEnteredEmailInput,
+    reset: resetEmailInput,
     defaultOrErrorStyles: emailInputStyles,
   } = useInput(value => value.trim().includes('@') && value.trim() !== '');
 
@@ -45,8 +45,8 @@ const SimpleInput = props => {
     console.log(enteredEmail);
 
     //3. Clear inputs
-    resetEnteredNameInput();
-    resetEnteredEmailInput();
+    resetNameInput();
+    resetEmailInput();
   };
 
   return (
