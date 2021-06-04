@@ -10,11 +10,7 @@ const Backdrop = function ({ closeModal }) {
 };
 
 const ModalOverlay = function ({ children }) {
-  return (
-    <div className={styles.modal}>
-      <div className={styles.content}>{children}</div>
-    </div>
-  );
+  return <div className={styles.modal}>{children}</div>;
 };
 
 const portalElements = document.getElementById('overlays');

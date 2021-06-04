@@ -1,12 +1,10 @@
 import { useContext } from 'react';
 import { FIREBASE_URL } from '../../Configs/config';
-import useHttp from '../../hooks/use-http';
 import CartContext from '../../store/cart-context';
 
-const OrderForm = function ({ className }) {
+const OrderForm = function ({ className, onPlaceOrder }) {
   const cartCtx = useContext(CartContext);
 
-  const { isLoading, error, sendRequest: placeOrder } = useHttp();
   const orderSubmitHandler = event => {
     //1.Prevent Default
     event.preventDefault();
@@ -33,7 +31,7 @@ const OrderForm = function ({ className }) {
       orderQuantity,
     };
 
-    placeOrder(
+    onPlaceOrder(
       {
         url: `${FIREBASE_URL}orders.json`,
         method: 'POST',
@@ -46,6 +44,8 @@ const OrderForm = function ({ className }) {
         console.log(data);
       }
     );
+
+    //clean the cart
   };
 
   return (
