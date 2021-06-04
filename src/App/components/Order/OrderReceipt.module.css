@@ -1,0 +1,146 @@
+:root {
+  --color-primary: #8a2b06;
+  --color-primary-lighter: #b94517;
+  --color-primary-dark: #4d1601;
+  --color-successful: #173506;
+}
+
+.order {
+  max-height: 25rem;
+  overflow-y: scroll;
+  border-bottom: 0.1rem solid var(--color-primary);
+}
+
+.order__content {
+  padding-top: 1.6rem;
+}
+
+.order__successful {
+  border-bottom: 0.1rem solid var(--color-primary);
+  color: var(--color-successful);
+  padding: 2rem 0;
+
+  position: relative;
+}
+.order__successful p {
+  margin: 0;
+  line-height: 1;
+}
+
+.order__successful p:first-of-type {
+  font-size: 2.5rem;
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  padding: 0 1rem;
+}
+.order__successful p:last-of-type {
+  font-size: 0.8rem;
+  display: inline-block;
+  background-color: #c3e0b2;
+  padding: 0.4rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+button.order__successful-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.6rem;
+  border: transparent;
+  background-color: transparent;
+  outline: transparent;
+  color: var(--color-successful);
+  cursor: pointer;
+  transform: translateY(-3px);
+  transition: all 0.15s ease-out;
+}
+
+button.order__successful-close:hover,
+button.order__successful-close:active {
+  font-size: 1.2;
+  transform: translateY(0px);
+  text-shadow: 0 4px 1rem rgba(0, 0, 0, 0.2);
+}
+
+.order__header {
+}
+
+.order__receipt-text {
+}
+
+.order__inner {
+  padding: 1.5rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.order__logo {
+}
+
+.order__company {
+}
+
+.order__from {
+}
+
+.order__from h3 {
+}
+.order__from address p {
+}
+
+.order__details {
+}
+
+.order__detail {
+}
+
+.order__detail--title {
+}
+
+.order__detail--text {
+}
+
+.order__billing {
+}
+
+.order__to {
+}
+
+.order__ship {
+}
+
+.order__lists {
+}
+
+.order__lists-content {
+}
+
+.order__item--head {
+}
+
+.order__item {
+}
+
+.order__item span {
+}
+
+.order__item span:not(:last-child) {
+}
+
+.order__taxes {
+}
+
+.order__taxes p {
+}
+
+.order__taxes span {
+}
+
+.order__total {
+}
+
+.order__total p {
+}
+
+.order__total span {
+}
