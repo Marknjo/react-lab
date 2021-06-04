@@ -1,9 +1,11 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
+import SimpleInput from './components/SimpleInput';
+import './App.css';
 
 const App = function () {
   return (
-    <div>
-      <h2>Start the next Session</h2>
+    <div className="app">
+      <SimpleInput />
     </div>
   );
 };
