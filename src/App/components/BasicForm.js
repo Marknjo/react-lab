@@ -6,7 +6,7 @@ const BasicForm = props => {
   const {
     value: enteredFirstnameValue,
     isValid: enteredFirstnameIsValid,
-    hasError: firstnameInputHasErrors,
+    hasError: firstnameInputHasError,
     inputBlurHandler: firstnameBlurHandler,
     valueChangeHandler: firstnameChangeHandler,
     reset: resetFirstnameInput,
@@ -17,7 +17,7 @@ const BasicForm = props => {
   const {
     value: enteredLastnameValue,
     isValid: enteredLastnameIsValid,
-    hasError: lastnameInputHasErrors,
+    hasError: lastnameInputHasError,
     inputBlurHandler: lastnameBlurHandler,
     valueChangeHandler: lastnameChangeHandler,
     reset: resetLastnameInput,
@@ -25,10 +25,24 @@ const BasicForm = props => {
   } = useInput(value => value.trim() !== '' && value.trim().length > 3);
 
   //3. Email Address input logic
+  const {
+    value: enteredEmailValue,
+    isValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    inputBlurHandler: emailInputBlurHandler,
+    valueChangeHandler: emailChangehandler,
+    reset: resetEmailInput,
+    defaultOrErrorStyles: emailFieldStyles,
+  } = useInput(
+    value =>
+      value.trim().includes('@') &&
+      value.trim().length > 8 &&
+      value.trim() !== ''
+  );
 
   //Form validity
   let formIsValid = false;
-  if (firstnameInputHasErrors && lastnameInputHasErrors) {
+  if (firstnameInputHasError && lastnameInputHasError && emailInputHasError) {
     formIsValid = true;
   }
 
@@ -37,24 +51,27 @@ const BasicForm = props => {
     //1.prevent form submission
     event.preventDefault();
 
-    //2.1. Validate First name input (Last name and first name have a similar way of validation)
+    //2.1. Validate First name input
+    //(Last name and first name have a similar way of validation)
     //2.2. Validate Last name input
+    //2.3. validate email input
     if (
-      (!enteredFirstnameIsValid && enteredFirstnameValue < 4) ||
-      (!enteredLastnameIsValid && enteredLastnameValue < 4)
+      !enteredFirstnameIsValid ||
+      !enteredLastnameIsValid ||
+      !enteredEmailIsValid
     ) {
       return;
     }
 
-    //2.3. validate email input
-
     //3. Submit data after all validations have passed (For nor console log)
     console.log(enteredFirstnameValue);
     console.log(enteredLastnameValue);
+    console.log(enteredEmailValue);
 
     //4. Reset form fields
     resetFirstnameInput();
     resetLastnameInput();
+    resetEmailInput();
   };
 
   return (
@@ -72,7 +89,7 @@ const BasicForm = props => {
             value={enteredFirstnameValue}
           />
 
-          {firstnameInputHasErrors && (
+          {firstnameInputHasError && (
             <p className="error-text">First Name field is invalid.</p>
           )}
         </div>
@@ -89,15 +106,26 @@ const BasicForm = props => {
             value={enteredLastnameValue}
           />
 
-          {lastnameInputHasErrors && (
+          {lastnameInputHasError && (
             <p className="error-text">Last name field is invalid.</p>
           )}
         </div>
       </div>
-      <div className="form-control">
-        <label htmlFor="name">E-Mail Address</label>
-        <input type="text" id="name" />
+
+      <div className={emailFieldStyles()}>
+        <label htmlFor="emal">E-Mail Address</label>
+        <input
+          type="text"
+          id="emal"
+          name="email"
+          onBlur={emailInputBlurHandler}
+          onChange={emailChangehandler}
+          value={enteredEmailValue}
+        />
+
+        {emailInputHasError && <p className="error-text">Invalid email!</p>}
       </div>
+
       <div className="form-actions">
         <button disabled={formIsValid}>Submit</button>
       </div>
