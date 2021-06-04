@@ -12,3 +12,8 @@ body {
   margin: 0;
   background-color: #3f3f3f;
 }
+
+.error-text {
+  color: #b40e0e;
+  font-size: 1.4rem;
+}
