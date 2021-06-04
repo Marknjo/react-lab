@@ -19,7 +19,7 @@
 .order__successful {
   border-bottom: 0.1rem solid var(--color-primary);
   color: var(--color-successful);
-  padding: 2rem 0;
+  padding: 1rem 0;
 
   position: relative;
 }
@@ -28,19 +28,20 @@
   line-height: 1;
 }
 
-.order__successful p:first-of-type {
-  font-size: 2.5rem;
+.order__successful p:last-of-type {
+  font-size: 2rem;
   font-weight: 100;
   margin-bottom: 0.5rem;
   text-transform: capitalize;
   padding: 0 1rem;
 }
-.order__successful p:last-of-type {
+.order__successful p:first-of-type {
   font-size: 0.8rem;
   display: inline-block;
   background-color: #c3e0b2;
   padding: 0.4rem 1.5rem;
   border-radius: 0 8px 8px 0;
+  margin-bottom: 0.2rem;
 }
 
 button.order__successful-close {

@@ -6,8 +6,8 @@ const OrderReceipt = function () {
     <>
       <div className={styles['order']}>
         <div className={styles['order__successful']}>
-          <p>Thanks for Your order 😉</p>
           <p>Your order was submitted successfully</p>
+          <p>Thanks for ordering with us 😉</p>
           <button type="button" className={styles['order__successful-close']}>
             &times;
           </button>
