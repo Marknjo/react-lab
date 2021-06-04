@@ -160,3 +160,31 @@ button.order__successful-close:active {
 .order__footer p:first-of-type {
   font-size: 1rem;
 }
+
+.order__actions {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.order__actions button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.order__actions button:hover,
+.order__actions button:active {
+  background-color: #5a1a01;
+  border-color: #5a1a01;
+  color: white;
+}
+
+.order__actions .order__close {
+  color: #8a2b06;
+}
