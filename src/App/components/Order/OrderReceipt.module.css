@@ -144,3 +144,19 @@ button.order__successful-close:active {
 
 .order__total span {
 }
+.order__footer {
+  text-align: right;
+  background-color: var(--color-primary-dark);
+  color: #ccc;
+  padding: 0.8rem 1rem;
+  font-weight: 400;
+}
+
+.order__footer p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.order__footer p:first-of-type {
+  font-size: 1rem;
+}
