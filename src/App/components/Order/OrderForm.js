@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { FIREBASE_URL } from '../../Configs/config';
 import CartContext from '../../store/cart-context';
 
-const OrderForm = function ({ className, onPlaceOrder }) {
+const OrderForm = function ({ className, onPlaceOrder, onSuccessfulOrder }) {
   const cartCtx = useContext(CartContext);
 
   const orderSubmitHandler = event => {
@@ -42,6 +42,8 @@ const OrderForm = function ({ className, onPlaceOrder }) {
       },
       data => {
         console.log(data);
+
+        onSuccessfulOrder(true);
       }
     );
 

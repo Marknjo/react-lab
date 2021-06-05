@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { formatNumber } from '../../helpers/helperMethods';
 import useHttp from '../../hooks/use-http';
 import CartContext from '../../store/cart-context';
@@ -14,11 +14,16 @@ const Cart = function ({ onHideCart }) {
   const formatedTotalAmount = formatNumber(cartCtx.totalAmount);
 
   const { isLoading, error, sendRequest: placeOrder } = useHttp();
+  const [isOrderSuccessful, setIsOrderSuccessful] = useState(false);
+
+  const successfulOrderhHandler = isSuccessful => {
+    setIsOrderSuccessful(isSuccessful);
+  };
 
   return (
     <Modal onCloseModal={onHideCart}>
-      <OrderReceipt />
-      {false && (
+      {isOrderSuccessful && <OrderReceipt />}
+      {!isOrderSuccessful && (
         <div className={styles['cart-content']}>
           <CartLists className={styles['cart-items']} />
 
@@ -58,6 +63,7 @@ const Cart = function ({ onHideCart }) {
                 <OrderForm
                   className={styles.button}
                   onPlaceOrder={placeOrder}
+                  onSuccessfulOrder={successfulOrderhHandler}
                 />
               </>
             )}
