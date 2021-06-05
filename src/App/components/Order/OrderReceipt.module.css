@@ -14,7 +14,7 @@
   overscroll-behavior: contain;
 }
 
-.order__content section {
+.order__content section:not(:last-of-type) {
   margin-bottom: 2rem;
 }
 
@@ -223,12 +223,32 @@ button.order__successful-close:active {
 }
 
 .order__taxes {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 .order__taxes p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .order__taxes span {
+  font-size: 1rem;
+}
+
+.order__taxes span:first-of-type {
+  margin-right: 2rem;
+  margin-bottom: 5px;
+  justify-self: start;
+}
+
+.order__taxes span:last-of-type {
+  margin-right: 1rem;
+  justify-self: end;
+  font-weight: 700;
+  color: var(--color-primary-dark);
 }
 
 .order__total {
