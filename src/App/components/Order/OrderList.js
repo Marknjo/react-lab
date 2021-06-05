@@ -11,10 +11,9 @@ const OrderList = function () {
       <OrderItem
         className={styles['order__item']}
         key={item.id}
-        num={`#${index + 1}`}
+        qty={item.amount}
         description={item.title}
         price={item.price}
-        qty={item.amount}
       />
     );
   });
@@ -25,10 +24,10 @@ const OrderList = function () {
         <li
           className={`${styles['order__item']} ${styles['order__item--head']}`}
         >
-          <span>#</span>
           <span>Description</span>
           <span>Qty</span>
           <span>Unit Price</span>
+          <span>Total Amount</span>
         </li>
 
         {orderList}

@@ -210,7 +210,7 @@ button.order__successful-close:active {
   margin-right: 1rem;
   justify-self: end;
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: var(--color-primary-lighter);
 }
 
 .order__total {
