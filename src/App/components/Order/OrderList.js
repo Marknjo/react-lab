@@ -1,7 +1,24 @@
+import { useContext } from 'react';
+import CartContext from '../../store/cart-context';
 import OrderItem from './OrderItem';
 import styles from './OrderList.module.css';
 
 const OrderList = function () {
+  const cartCtx = useContext(CartContext);
+
+  const orderList = cartCtx.items.map((item, index) => {
+    return (
+      <OrderItem
+        className={styles['order__item']}
+        key={item.id}
+        qty={`#${index + 1}`}
+        description={item.title}
+        price={item.price}
+        amount={item.amount}
+      />
+    );
+  });
+
   return (
     <section className={styles['order__lists']}>
       <ul className={styles['order__lists-content']}>
@@ -14,7 +31,7 @@ const OrderList = function () {
           <span>Amount</span>
         </li>
 
-        <OrderItem className={styles['order__item']} />
+        {orderList}
       </ul>
     </section>
   );

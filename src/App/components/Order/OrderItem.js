@@ -1,10 +1,13 @@
-const OrderItem = function ({ className }) {
+import { formatNumber } from '../../helpers/helperMethods';
+
+const OrderItem = function (props) {
+  const formatedPrice = formatNumber(props.price);
   return (
-    <li className={className}>
-      <span>#1</span>
-      <span>Description</span>
-      <span>12.00</span>
-      <span>1</span>
+    <li className={props.className}>
+      <span>{props.qty}</span>
+      <span>{props.description}</span>
+      <span>{formatedPrice}</span>
+      <span>{props.amount}</span>
     </li>
   );
 };
