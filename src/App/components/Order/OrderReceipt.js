@@ -54,7 +54,7 @@ const OrderReceipt = function () {
               </div>
 
               <div className={styles['order__ship']}>
-                <p className={'order__detail'}>
+                <p className={styles['order__detail']}>
                   <span className={styles['order__detail--title']}>
                     Ship To:{'  '}
                   </span>
@@ -64,15 +64,17 @@ const OrderReceipt = function () {
             </section>
 
             <section className={styles['order__lists']}>
-              <ul className={'order__lists-content'}>
-                <li className={'order__item order__item--head'}>
+              <ul className={styles['order__lists-content']}>
+                <li
+                  className={`${styles['order__item']} ${styles['order__item--head']}`}
+                >
                   <span>Qty</span>
                   <span>Description</span>
                   <span>Unit Price</span>
                   <span>Amount</span>
                 </li>
 
-                <li className={'order__item'}>
+                <li className={styles['order__item']}>
                   <span>#1</span>
                   <span>Description</span>
                   <span>12.00</span>
