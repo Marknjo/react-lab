@@ -1,8 +1,19 @@
+import { useContext } from 'react';
+import CartContext from '../../store/cart-context';
 import OrderList from './OrderList';
 import styles from './OrderReceipt.module.css';
 
-const OrderReceipt = function () {
+const OrderReceipt = function ({ onCloseReceipt }) {
   const date = Intl.DateTimeFormat('en-GB').format(Date.now());
+  const cartCtx = useContext(CartContext);
+
+  const closeRecipeHandler = () => {
+    //1. reset the store
+
+    //2. Close the modal
+    onCloseReceipt();
+  };
+
   return (
     <>
       <div className={styles['order']}>
@@ -85,7 +96,11 @@ const OrderReceipt = function () {
       </section>
 
       <div className={styles['order__actions']}>
-        <button className={styles['order__close']} type="button">
+        <button
+          className={styles['order__close']}
+          type="button"
+          onClick={closeRecipeHandler}
+        >
           Close
         </button>
       </div>
