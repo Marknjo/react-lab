@@ -97,7 +97,7 @@ const OrderReceipt = function () {
 
       <section className={styles['order__total']}>
         <p>
-          <span>TOTAL AMOUNT</span> <span>$13.00</span>
+          <span>Total Amount</span> <span>$13.00</span>
         </p>
       </section>
 
