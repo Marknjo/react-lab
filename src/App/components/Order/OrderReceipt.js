@@ -1,3 +1,4 @@
+import OrderList from './OrderList';
 import styles from './OrderReceipt.module.css';
 
 const OrderReceipt = function () {
@@ -63,25 +64,7 @@ const OrderReceipt = function () {
               </div>
             </section>
 
-            <section className={styles['order__lists']}>
-              <ul className={styles['order__lists-content']}>
-                <li
-                  className={`${styles['order__item']} ${styles['order__item--head']}`}
-                >
-                  <span>Qty</span>
-                  <span>Description</span>
-                  <span>Unit Price</span>
-                  <span>Amount</span>
-                </li>
-
-                <li className={styles['order__item']}>
-                  <span>#1</span>
-                  <span>Description</span>
-                  <span>12.00</span>
-                  <span>1</span>
-                </li>
-              </ul>
-            </section>
+            <OrderList />
 
             <section className={styles['order__taxes']}>
               <p>
