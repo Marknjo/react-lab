@@ -49,3 +49,19 @@
   background-color: #8a2b06;
   color: white;
 }
+
+.loading,
+.error {
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.loading {
+  font-weight: 400;
+}
+
+.error {
+  color: tomato;
+}

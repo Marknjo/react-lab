@@ -20,58 +20,68 @@ const Cart = function ({ onHideCart }) {
     setIsOrderSuccessful(isSuccessful);
   };
 
-  return (
-    <Modal onCloseModal={onHideCart}>
-      {isOrderSuccessful && <OrderReceipt />}
-      {!isOrderSuccessful && (
-        <div className={styles['cart-content']}>
-          <CartLists className={styles['cart-items']} />
+  let content = <p className={styles.loading}>Loading...</p>;
 
-          <div className={styles.total}>
-            {hasItems ? (
-              <>
-                <span>Total Amount</span>
-                <span>{formatedTotalAmount}</span>{' '}
-              </>
-            ) : (
-              <>
-                <span> Opps! Your cart is empty. (☞ﾟヮﾟ)☞ </span>
-                <div className={styles.actions}>
+  if (error) {
+    content = <p className={styles.error}>{error}</p>;
+  }
+
+  if (!error && !isLoading) {
+    content = (
+      <>
+        {isOrderSuccessful && <OrderReceipt />}
+        {!isOrderSuccessful && (
+          <div className={styles['cart-content']}>
+            <CartLists className={styles['cart-items']} />
+
+            <div className={styles.total}>
+              {hasItems ? (
+                <>
+                  <span>Total Amount</span>
+                  <span>{formatedTotalAmount}</span>{' '}
+                </>
+              ) : (
+                <>
+                  <span> Opps! Your cart is empty. (☞ﾟヮﾟ)☞ </span>
+                  <div className={styles.actions}>
+                    <button
+                      className={styles['button--alt']}
+                      type="button"
+                      onClick={onHideCart}
+                    >
+                      Shop Now
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className={styles.actions}>
+              {hasItems && (
+                <>
                   <button
                     className={styles['button--alt']}
                     type="button"
                     onClick={onHideCart}
                   >
-                    Shop Now
+                    Close
                   </button>
-                </div>
-              </>
-            )}
-          </div>
 
-          <div className={styles.actions}>
-            {hasItems && (
-              <>
-                <button
-                  className={styles['button--alt']}
-                  type="button"
-                  onClick={onHideCart}
-                >
-                  Close
-                </button>
-
-                <OrderForm
-                  className={styles.button}
-                  onPlaceOrder={placeOrder}
-                  onSuccessfulOrder={successfulOrderhHandler}
-                />
-              </>
-            )}
+                  <OrderForm
+                    className={styles.button}
+                    onPlaceOrder={placeOrder}
+                    onSuccessfulOrder={successfulOrderhHandler}
+                  />
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-    </Modal>
-  );
+        )}
+      </>
+    );
+  }
+
+  return <Modal onCloseModal={onHideCart}>{content}</Modal>;
 };
 
 export default Cart;
