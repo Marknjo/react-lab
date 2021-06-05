@@ -30,17 +30,17 @@ const OrderReceipt = function () {
               <div className={styles['order__details']}>
                 <p className={'order__detail'}>
                   <span className={styles['order__detail--title']}>
-                    Receipt #:
+                    Receipt #:{' '}
                   </span>
-                  <span
-                    className={styles['order__detail--text']}
-                  >{`RM00${Math.random().toString().slice(2, 8)}`}</span>
+                  <span className={styles['order__detail--text']}>
+                    {`RM00${Math.random().toString().slice(2, 8)}`}
+                  </span>
                 </p>
                 <p className={'order__detail'}>
-                  <span className={styles['order__details--title']}>
-                    Receipt Date #:
+                  <span className={styles['order__detail--title']}>
+                    Receipt Date #:{' '}
                   </span>
-                  <span className={styles['order__details--text']}>{date}</span>
+                  <span className={styles['order__detail--text']}>{date}</span>
                 </p>
               </div>
             </section>
