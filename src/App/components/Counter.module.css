@@ -22,10 +22,10 @@
   font-weight: bold;
 }
 
-.value + div {
+.counter > div {
   margin-bottom: 2rem;
 }
 
-.value + div button:not(:last-of-type) {
-  margin-right: 2rem;
+.counter > div button:not(:last-of-type) {
+  margin-right: 1rem;
 }
