@@ -1,6 +1,8 @@
 :root {
   --color-primary: #8a2b06;
   --color-primary-lighter: #b94517;
+  --color-primary-light-1: rgba(137, 43, 6, 0.2);
+  --color-primary-light-2: rgba(137, 43, 6, 0.6);
   --color-primary-dark: #4d1601;
   --color-successful: #173506;
 }
@@ -13,7 +15,6 @@
 }
 
 .order__content {
-  padding-top: 1.6rem;
 }
 
 .order__successful {
@@ -66,17 +67,39 @@ button.order__successful-close:active {
 }
 
 .order__header {
+  background-color: var(--color-primary-light-1);
+  padding: 0 1rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .order__receipt-text {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: var(--color-primary-light-2);
+  padding: 0.6rem 1rem 1rem;
+  align-self: flex-start;
+  border-radius: 0 0 0.4rem 0.4rem;
+  font-weight: 100;
+}
+
+.order__logo {
+  font-size: 1.6rem;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  padding-right: 1.6rem;
+  padding-left: 5px;
+  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 10px;
+  border-bottom: 0.6rem solid var(--color-primary-lighter);
+  margin-bottom: 1.6rem;
+  margin-top: 0.8rem;
 }
 
 .order__inner {
   padding: 1.5rem 1rem;
   margin-bottom: 2rem;
-}
-
-.order__logo {
 }
 
 .order__company {
