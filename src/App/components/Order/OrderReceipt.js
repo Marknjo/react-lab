@@ -9,7 +9,7 @@ const OrderReceipt = function ({ onCloseReceipt }) {
 
   const closeRecipeHandler = () => {
     //1. reset the store
-
+    cartCtx.clearCart();
     //2. Close the modal
     onCloseReceipt();
   };

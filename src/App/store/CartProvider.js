@@ -101,6 +101,11 @@ const cartReducer = (prevState, action) => {
         totalAmount: updatedTotalAmountInCart,
       };
 
+    case 'CLEAR_CART_ITEMS':
+      return {
+        ...defaultCartState,
+      };
+
     default:
       return prevState;
   }
@@ -126,11 +131,18 @@ const CartProvider = function ({ children }) {
     });
   };
 
+  const clearCartHander = () => {
+    dispatchCartAction({
+      type: 'CLEAR_CART_ITEMS',
+    });
+  };
+
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHander,
+    clearCart: clearCartHander,
   };
 
   return (
