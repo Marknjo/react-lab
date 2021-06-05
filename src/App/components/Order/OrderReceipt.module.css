@@ -235,7 +235,7 @@ button.order__successful-close:active {
   margin-right: 1rem;
   padding: 0.2rem 1rem;
   border-bottom: 2px solid var(--color-primary-light-1);
-  color: var(--color-primary-dark);
+  color: var(--color-primary-lighter);
   font-weight: 700;
 }
 

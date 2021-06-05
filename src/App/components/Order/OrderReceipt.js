@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { formatNumber } from '../../helpers/helperMethods';
 import CartContext from '../../store/cart-context';
 import OrderList from './OrderList';
 import styles from './OrderReceipt.module.css';
@@ -7,6 +8,12 @@ const OrderReceipt = function ({ onCloseReceipt }) {
   const date = Intl.DateTimeFormat('en-GB').format(Date.now());
   const cartCtx = useContext(CartContext);
   const [isSuccessMessageShown, setIsSuccessMessageShown] = useState(true);
+
+  const formatedSubtotal = formatNumber(cartCtx.totalAmount);
+  const formatedTaxAmount = formatNumber(cartCtx.totalAmount * 0.16);
+  const formatedTotalAmount = formatNumber(
+    cartCtx.totalAmount + cartCtx.totalAmount * 0.16
+  );
 
   const closeRecipeHandler = () => {
     //1. reset the store
@@ -101,10 +108,10 @@ const OrderReceipt = function ({ onCloseReceipt }) {
 
             <section className={styles['order__taxes']}>
               <p>
-                <span>Subtotal</span> <span>$12.00</span>
+                <span>Subtotal</span> <span>{formatedSubtotal}</span>
               </p>
               <p>
-                <span>TAX 16%</span> <span>$1.00</span>
+                <span>TAX 16%</span> <span>{formatedTaxAmount}</span>
               </p>
             </section>
           </div>
@@ -113,7 +120,7 @@ const OrderReceipt = function ({ onCloseReceipt }) {
 
       <section className={styles['order__total']}>
         <p>
-          <span>Total Amount</span> <span>$13.00</span>
+          <span>Total Amount</span> <span>{formatedTotalAmount}</span>
         </p>
       </section>
 
