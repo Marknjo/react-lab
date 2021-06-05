@@ -1,11 +1,8 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
+import Counter from './components/Counter';
 
 const App = function () {
-  return (
-    <div>
-      <h2>Start the next Session</h2>
-    </div>
-  );
+  return <Counter />;
 };
 
 export default App;
