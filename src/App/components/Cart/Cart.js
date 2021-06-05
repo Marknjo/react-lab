@@ -42,7 +42,10 @@ const Cart = function ({ onHideCart }) {
                 </>
               ) : (
                 <>
-                  <span> Opps! Your cart is empty. (☞ﾟヮﾟ)☞ </span>
+                  <p className={styles['cart-empty']}>
+                    {' '}
+                    Opps! Your cart is empty. (☞ﾟヮﾟ)☞{' '}
+                  </p>
                   <div className={styles.actions}>
                     <button
                       className={styles['button--alt']}

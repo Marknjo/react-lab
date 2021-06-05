@@ -50,6 +50,15 @@
   color: white;
 }
 
+.cart-empty {
+  font-size: 1.2rem;
+  color: #8a2b06;
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  border-radius: 8px;
+}
+
 .loading,
 .error {
   margin: 2rem auto;
