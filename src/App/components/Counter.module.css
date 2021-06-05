@@ -21,3 +21,11 @@
   margin: 2rem 0;
   font-weight: bold;
 }
+
+.value + div {
+  margin-bottom: 2rem;
+}
+
+.value + div button:not(:last-of-type) {
+  margin-right: 2rem;
+}
