@@ -81,11 +81,7 @@ const Auth = () => {
               value={emailValue}
               onBlur={emailBlurHandler}
               onChange={emailChangeHandler}
-              className={
-                emailHasError
-                  ? emailErrorStyles(`${classes['invalid']}`, '')
-                  : ''
-              }
+              className={emailErrorStyles(`${classes['invalid']}`, null)}
             />
           </div>
 
@@ -97,11 +93,7 @@ const Auth = () => {
               value={passwordValue}
               onBlur={passwordBlurHandler}
               onChange={passwordChangeHandler}
-              className={
-                passwordHasError
-                  ? passwordErrorStyles(`${classes['invalid']}`, '')
-                  : ''
-              }
+              className={passwordErrorStyles(`${classes['invalid']}`, null)}
             />
           </div>
 

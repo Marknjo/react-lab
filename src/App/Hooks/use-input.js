@@ -22,7 +22,7 @@ const useInput = function (validateValue) {
 
   /**
    * Error CSS Styles name
-   * @param {String} [defaultInputStyleName?] Default css style name i.e. form-control
+   * @param {String | null} [defaultInputStyleName?] Default css style name i.e. form-control
    * @param {String} [invalidInputStyleName?] Invalid css style name i.e. invalid
    * @returns String
    */
@@ -31,8 +31,12 @@ const useInput = function (validateValue) {
     invalidInputStyleName = 'invalid'
   ) => {
     return hasError
-      ? `${defaultInputStyleName} ${invalidInputStyleName}`
-      : defaultInputStyleName;
+      ? invalidInputStyleName
+        ? `${defaultInputStyleName} ${invalidInputStyleName}`
+        : defaultInputStyleName
+      : invalidInputStyleName
+      ? defaultInputStyleName
+      : '';
   };
 
   return {
