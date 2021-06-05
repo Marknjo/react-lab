@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../store/cart-context';
 import OrderList from './OrderList';
 import styles from './OrderReceipt.module.css';
@@ -6,6 +6,7 @@ import styles from './OrderReceipt.module.css';
 const OrderReceipt = function ({ onCloseReceipt }) {
   const date = Intl.DateTimeFormat('en-GB').format(Date.now());
   const cartCtx = useContext(CartContext);
+  const [isSuccessMessageShown, setIsSuccessMessageShown] = useState(true);
 
   const closeRecipeHandler = () => {
     //1. reset the store
@@ -14,16 +15,37 @@ const OrderReceipt = function ({ onCloseReceipt }) {
     onCloseReceipt();
   };
 
+  const closeSuccessfulMessageBoxHandler = () => {
+    setIsSuccessMessageShown(false);
+  };
+
+  //auto close success message
+  useEffect(() => {
+    const isClosingMessageBoxTimer = setTimeout(() => {
+      setIsSuccessMessageShown(false);
+    }, 15 * 1000);
+
+    return () => {
+      clearTimeout(isClosingMessageBoxTimer);
+    };
+  }, []);
+
   return (
     <>
       <div className={styles['order']}>
-        <div className={styles['order__successful']}>
-          <p>Your order was submitted successfully</p>
-          <p>Thanks for ordering with us 😉</p>
-          <button type="button" className={styles['order__successful-close']}>
-            &times;
-          </button>
-        </div>
+        {isSuccessMessageShown && (
+          <div className={styles['order__successful']}>
+            <p>Your order was submitted successfully</p>
+            <p>Thanks for ordering with us 😉</p>
+            <button
+              onClick={closeSuccessfulMessageBoxHandler}
+              type="button"
+              className={styles['order__successful-close']}
+            >
+              &times;
+            </button>
+          </div>
+        )}
 
         <div className={styles['order__content']}>
           <header className={styles['order__header']}>

@@ -29,7 +29,7 @@ const Cart = function ({ onHideCart }) {
   if (!error && !isLoading) {
     content = (
       <>
-        {isOrderSuccessful && <OrderReceipt onCloseReceipt={onHideCart} />}
+        {true && <OrderReceipt onCloseReceipt={onHideCart} />}
         {!isOrderSuccessful && (
           <div className={styles['cart-content']}>
             <CartLists className={styles['cart-items']} />
