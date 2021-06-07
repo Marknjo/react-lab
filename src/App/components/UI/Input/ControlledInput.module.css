@@ -1,0 +1,62 @@
+:root {
+  --color-primary: #8a2b06;
+  --color-primary-lighter: #b94517;
+  --color-primary-light-1: rgba(137, 43, 6, 0.2);
+  --color-primary-light-2: rgba(137, 43, 6, 0.6);
+  --color-primary-dark: #4d1601;
+  --color-successful: #173506;
+  --color-secondary: #06658a;
+  --color-secondary-light: #e3edf2;
+  --color-secondary-light-2: #c7dce5;
+  --color-secondary-dark: #022735;
+  --color-secondary-dark-1: #06658a;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
+
+.input label {
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.input label {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 1rem;
+  color: var(--color-secondary-dark);
+}
+
+.input__required {
+  color: tomato;
+  padding: 0 2px;
+}
+
+.input input {
+  border-color: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--color-secondary-dark);
+  padding: 4px 0.4rem;
+  border-radius: 5px;
+  border-color: var(--color-secondary-dark-1);
+  transition: all 0.2s;
+}
+
+.input input:hover,
+.input input:active {
+  border-color: var(--color-secondary);
+  background-color: var(--color-secondary-light-2);
+}
+
+.input input:focus {
+  border-color: var(--color-secondary);
+  background-color: var(--color-secondary-light);
+}
