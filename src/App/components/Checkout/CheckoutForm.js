@@ -48,7 +48,7 @@ const CheckoutForm = function () {
         </div>
         <form action="">
           <div className={styles['chekckout__form-inputs']}>
-            <div className={styles['checkout__form-control']}>
+            <div className={styles['checkout__form-title']}>
               <h3>Billing Details</h3>
             </div>
 
@@ -90,7 +90,7 @@ const CheckoutForm = function () {
             </div>
 
             <div className={styles['checkout__form-control']}>
-              <p className={styles['checkout__new-users']}>
+              <p className={styles['checkout__info']}>
                 <span>For New User Only: </span> Create and account by entering
                 the information below. If you are a returning customer, please
                 login at the top of the page.
@@ -111,7 +111,7 @@ const CheckoutForm = function () {
           </div>
 
           <div className={styles['checkout__order-details']}>
-            <div className={styles['checkout__form-control']}>
+            <div className={styles['checkout__form-title']}>
               <h3>Your Order</h3>
             </div>
 
@@ -160,6 +160,8 @@ const CheckoutForm = function () {
             </div>
           </div>
         </form>
+
+        <p className={styles['checkout__terms']}>Terms and conditions apply.</p>
       </Card>
     </section>
   );
