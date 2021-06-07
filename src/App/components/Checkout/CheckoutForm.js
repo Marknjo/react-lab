@@ -21,24 +21,25 @@ const CheckoutForm = function () {
           <button type="button">Login Now!</button>
 
           <form>
-            <div className={styles['checkout__form-control']}>
-              <label htmlFor="email">Email Address/Username </label>
-              <input type="text" id="email" value="" name="email" />
-            </div>
-
             <ControlledInput
               label="Email Address/Username"
               input={{
                 id: 'email-username',
                 value: '',
                 name: 'email-password',
+                type: 'text',
               }}
             />
 
-            <div className={styles['checkout__form-control']}>
-              <label htmlFor="password">Account Password </label>
-              <input type="text" id="password" value="" name="password" />
-            </div>
+            <ControlledInput
+              label="Account Password "
+              input={{
+                id: 'login-password',
+                value: '',
+                name: 'login-password',
+                type: 'password',
+              }}
+            />
 
             <div className={styles['checkout__form-action']}>
               <button type="submit">Login</button>
@@ -52,20 +53,37 @@ const CheckoutForm = function () {
             </div>
 
             <div className={styles['checkout__form-group']}>
-              <div className={styles['checkout__form-control']}>
-                <label htmlFor="firstname">First Name </label>
-                <input type="text" id="firstname" value="" name="firstname" />
-              </div>
+              <ControlledInput
+                label="First Name "
+                input={{
+                  id: 'firstname',
+                  value: '',
+                  name: 'firstname',
+                  type: 'text',
+                }}
+              />
 
-              <div className={styles['checkout__form-control']}>
-                <label htmlFor="lastname">Last Name </label>
-                <input type="text" id="lastname" value="" name="lastname" />
-              </div>
+              <ControlledInput
+                label="Last Name"
+                input={{
+                  id: 'lastname',
+                  value: '',
+                  name: 'lastname',
+                  type: 'text',
+                }}
+              />
             </div>
 
             <div className={styles['checkout__form-control']}>
-              <label htmlFor="email">Email Address </label>
-              <input type="text" id="email" value="" name="email" />
+              <ControlledInput
+                label="Email Address"
+                input={{
+                  id: 'email',
+                  value: '',
+                  name: 'email',
+                  type: 'email',
+                }}
+              />
             </div>
 
             <div className={styles['checkout__form-control']}>
@@ -76,10 +94,15 @@ const CheckoutForm = function () {
               </p>
             </div>
 
-            <div className={styles['checkout__form-control']}>
-              <label htmlFor="password">Account Password </label>
-              <input type="text" id="password" value="" name="password" />
-            </div>
+            <ControlledInput
+              label="Account Password "
+              input={{
+                id: 'checkout-password',
+                value: '',
+                name: 'checkout-password',
+                type: 'password',
+              }}
+            />
           </div>
 
           <div className={styles['checkout__order-details']}>
