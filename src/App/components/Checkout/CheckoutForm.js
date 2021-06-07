@@ -15,8 +15,32 @@ const CheckoutForm = function () {
         <h2>Checkout Page</h2>
       </PageHeaderWrapper>
       <Card className={styles['checkout__form']}>
+        <div styles={'checkout__login'}>
+          <p>Returning customer?</p>
+          <button type="button">Login Now!</button>
+
+          <form>
+            <div className={styles['checkout__form-control']}>
+              <label htmlFor="email">Email Address/Username </label>
+              <input type="text" id="email" value="" name="email" />
+            </div>
+
+            <div className={styles['checkout__form-control']}>
+              <label htmlFor="password">Account Password </label>
+              <input type="text" id="password" value="" name="password" />
+            </div>
+
+            <div className={styles['checkout__form-action']}>
+              <button type="submit">Login</button>
+            </div>
+          </form>
+        </div>
         <form action="">
           <div className={styles['chekckout__form-inputs']}>
+            <div className={styles['checkout__form-control']}>
+              <h3>Billing Details</h3>
+            </div>
+
             <div className={styles['checkout__form-group']}>
               <div className={styles['checkout__form-control']}>
                 <label htmlFor="firstname">First Name </label>
@@ -33,9 +57,26 @@ const CheckoutForm = function () {
               <label htmlFor="email">Email Address </label>
               <input type="text" id="email" value="" name="email" />
             </div>
+
+            <div className={styles['checkout__form-control']}>
+              <p className={styles['checkout__new-users']}>
+                <span>For New User Only: </span> Create and account by entering
+                the information below. If you are a returning customer, please
+                login at the top of the page.
+              </p>
+            </div>
+
+            <div className={styles['checkout__form-control']}>
+              <label htmlFor="password">Account Password </label>
+              <input type="text" id="password" value="" name="password" />
+            </div>
           </div>
 
           <div className={styles['checkout__order-details']}>
+            <div className={styles['checkout__form-control']}>
+              <h3>Your Order</h3>
+            </div>
+
             <div className={styles['checkout__order-list']}>
               <ul className={styles['checkout__list']}>
                 <li
