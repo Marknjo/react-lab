@@ -1,4 +1,5 @@
 import Card from '../UI/Card/Card';
+import ControlledInput from '../UI/Input/ControlledInput';
 import PageHeaderWrapper from '../UI/PageHeader/PageHeaderWrapper';
 import styles from './CheckoutForm.module.css';
 
@@ -24,6 +25,15 @@ const CheckoutForm = function () {
               <label htmlFor="email">Email Address/Username </label>
               <input type="text" id="email" value="" name="email" />
             </div>
+
+            <ControlledInput
+              label="Email Address/Username"
+              input={{
+                id: 'email-username',
+                value: '',
+                name: 'email-password',
+              }}
+            />
 
             <div className={styles['checkout__form-control']}>
               <label htmlFor="password">Account Password </label>
