@@ -87,32 +87,40 @@
 }
 
 .checkout__order-details {
-  padding: 0 1rem;
   border: 1px solid var(--color-primary);
   border-radius: 0.4rem;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
   flex: 0 1 50%;
 }
 
-.checkout__order-list {
+.checkout__order-details .checkout__form-title h3 {
+  margin: 1rem;
 }
 
 .checkout__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .checkout__item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0 1rem;
 }
 
 .checkout__item div {
 }
 
-.checkout__product-description {
+.checkout__product-description:nth-of-type(1n) {
+  background-color: var(--color-primary-light-1);
 }
 
 .checkout__item--header {
 }
 
 .checkout__item--footer {
+  display: block;
 }
 
 .checkout__summaries {
