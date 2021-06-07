@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Cart from './components/Cart/Cart';
+import CheckoutForm from './components/Checkout/CheckoutForm';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 import CartProvider from './store/CartProvider';
@@ -22,7 +23,8 @@ const App = function () {
       {cartIsShown && <Cart onHideCart={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
-        <Meals />
+        <CheckoutForm />
+        {false && <Meals />}
       </main>
     </CartProvider>
   );
