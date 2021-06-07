@@ -50,15 +50,17 @@
 }
 
 .checkout__form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout__form-group > :first-child {
+  margin-right: 1rem;
 }
 
 .checkout__form-control {
-}
-
-.checkout__form-control label {
-}
-
-.checkout__form-control input {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .checkout__order-details {

@@ -55,6 +55,7 @@ const CheckoutForm = function () {
             <div className={styles['checkout__form-group']}>
               <ControlledInput
                 label="First Name "
+                required={true}
                 input={{
                   id: 'firstname',
                   value: '',
@@ -65,6 +66,7 @@ const CheckoutForm = function () {
 
               <ControlledInput
                 label="Last Name"
+                required={true}
                 input={{
                   id: 'lastname',
                   value: '',
@@ -77,6 +79,7 @@ const CheckoutForm = function () {
             <div className={styles['checkout__form-control']}>
               <ControlledInput
                 label="Email Address"
+                required={true}
                 input={{
                   id: 'email',
                   value: '',
@@ -94,15 +97,17 @@ const CheckoutForm = function () {
               </p>
             </div>
 
-            <ControlledInput
-              label="Account Password "
-              input={{
-                id: 'checkout-password',
-                value: '',
-                name: 'checkout-password',
-                type: 'password',
-              }}
-            />
+            <div className={styles['checkout__form-control']}>
+              <ControlledInput
+                label="Account Password (Optional)"
+                input={{
+                  id: 'checkout-password',
+                  value: '',
+                  name: 'checkout-password',
+                  type: 'password',
+                }}
+              />
+            </div>
           </div>
 
           <div className={styles['checkout__order-details']}>
