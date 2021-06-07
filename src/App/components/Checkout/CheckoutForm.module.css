@@ -32,7 +32,21 @@
   z-index: 1;
 }
 
+.checkout__form form {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  padding: 1rem;
+  padding-bottom: 2.6rem;
+}
+
+.chekckout__form-inputs,
+.checkout__order-details {
+  flex: 1;
+}
+
 .chekckout__form-inputs {
+  margin-right: 1rem;
 }
 
 .checkout__form-group {
