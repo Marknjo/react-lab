@@ -11,7 +11,7 @@ import styles from './CheckoutForm.module.css';
 const CheckoutForm = function () {
   return (
     <section className={styles.checkout}>
-      <PageHeaderWrapper>
+      <PageHeaderWrapper className={styles['checkout__header']}>
         <h2>Checkout Page</h2>
       </PageHeaderWrapper>
       <Card className={styles['checkout__form']}>
@@ -44,6 +44,7 @@ const CheckoutForm = function () {
                   <div>Product</div>
                   <div>Total</div>
                 </li>
+
                 <li className={styles['checkout__item']}>
                   <div className={styles['checkout__product-description']}>
                     <span> Pizza </span>

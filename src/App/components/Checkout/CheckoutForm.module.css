@@ -1,0 +1,78 @@
+:root {
+  --color-primary: #8a2b06;
+  --color-primary-lighter: #b94517;
+  --color-primary-light-1: rgba(137, 43, 6, 0.2);
+  --color-primary-light-2: rgba(137, 43, 6, 0.6);
+  --color-primary-dark: #4d1601;
+  --color-successful: #173506;
+}
+
+.checkout {
+  max-width: 60rem;
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.checkout__header {
+  padding: 2rem;
+  z-index: 5;
+}
+
+.checkout__header h2 {
+  display: inline-block;
+  padding-bottom: 0.4rem;
+  margin: 0;
+  border-bottom: 0.1rem solid var(--color-primary-lighter);
+}
+
+.checkout__form {
+  margin-top: -2rem;
+  padding-top: 5.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.chekckout__form-inputs {
+}
+
+.checkout__form-group {
+}
+
+.checkout__form-control {
+}
+
+.checkout__form-control label {
+}
+
+.checkout__form-control input {
+}
+
+.checkout__order-details {
+}
+
+.checkout__order-list {
+}
+
+.checkout__list {
+}
+
+.checkout__item {
+}
+
+.checkout__item div {
+}
+
+.checkout__product-description {
+}
+
+.checkout__item--header {
+}
+
+.checkout__item--footer {
+}
+
+.checkout__summaries {
+}
+
+.checkout__form-action {
+}
