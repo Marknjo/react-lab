@@ -1,8 +1,8 @@
-import styles from './MealsSummary.module.css';
+import PageHeaderWrapper from '../../UI/PageHeader/PageHeaderWrapper';
 
 const MealsSummary = function () {
   return (
-    <section className={styles.summary}>
+    <PageHeaderWrapper>
       <h2>Delicious Food, Delivered To You</h2>
       <p>
         Choose your favorite meal from our broad selection of available meals
@@ -12,7 +12,7 @@ const MealsSummary = function () {
         All our meals are cooked with high-quality ingredients, just-in-time and
         of course by experienced chefs!
       </p>
-    </section>
+    </PageHeaderWrapper>
   );
 };
 
