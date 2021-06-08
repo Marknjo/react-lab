@@ -1,6 +1,7 @@
 import classes from './CartItem.module.css';
+import priceFormartter from '../../helpers/priceFormatter';
 
-const CartItem = (props) => {
+const CartItem = props => {
   const { title, quantity, total, price } = props.item;
 
   return (
@@ -8,8 +9,10 @@ const CartItem = (props) => {
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total.toFixed(2)}{' '}
-          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
+          {priceFormartter(total)}{' '}
+          <span className={classes.itemprice}>
+            ({priceFormartter(price)}/item)
+          </span>
         </div>
       </header>
       <div className={classes.details}>

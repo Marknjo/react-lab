@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import priceFormatter from '../../helpers/priceFormatter';
 import { cartActions } from '../../store/cart';
 import Card from '../UI/Card';
 import classes from './Cart.module.css';
