@@ -1,11 +1,15 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
+import Cart from './components/Cart/Cart';
+import Layout from './components/Layout/Layout';
+import Products from './components/Shop/Products';
 
-const App = function () {
+function App() {
   return (
-    <div>
-      <h2>Start the next Session</h2>
-    </div>
+    <Layout>
+      <Cart />
+      <Products />
+    </Layout>
   );
-};
+}
 
 export default App;
