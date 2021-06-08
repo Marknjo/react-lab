@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const cartInitialState = {
   items: [],
+  isCartHidden: true,
 };
 //create reducer
 
@@ -19,6 +20,10 @@ const cartSlice = createSlice({
 
     clearCart(state) {
       state.items = [];
+    },
+
+    toggleCart(state) {
+      state.isCartHidden = !state.isCartHidden;
     },
   },
 });
