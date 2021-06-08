@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const cartInitialState = {
   items: [],
   isCartHidden: true,
+  totalAmount: 0,
 };
 //create reducer
 
