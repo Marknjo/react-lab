@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import priceFormatter from '../../helpers/priceFormatter';
 import { cartActions } from '../../store/cart';
 import Card from '../UI/Card';
 import classes from './Cart.module.css';
@@ -8,6 +9,7 @@ const Cart = props => {
   const cartItems = useSelector(state => state.cart.items);
   const totalAmount = useSelector(state => state.cart.totalAmount);
   const dispatch = useDispatch();
+  const formatedTotalAmount = priceFormatter(totalAmount);
 
   const shopNowHandler = () => {
     dispatch(cartActions.toggleCart());
@@ -35,7 +37,7 @@ const Cart = props => {
                 item={{
                   title: item.title,
                   quantity: item.quantity,
-                  total: item.total,
+                  total: formatedTotalAmount,
                   price: item.price,
                 }}
               />
