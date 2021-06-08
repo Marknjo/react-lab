@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const cartInitialState = {
   items: [],
-  isCartHidden: true,
+
   total: 0,
 };
 
@@ -23,10 +23,6 @@ const cartSlice = createSlice({
 
     clearCart(state) {
       state.items = [];
-    },
-
-    toggleCart(state) {
-      state.isCartHidden = !state.isCartHidden;
     },
   },
 });
