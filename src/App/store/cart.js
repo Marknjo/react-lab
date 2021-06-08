@@ -18,6 +18,7 @@ const cartSlice = createSlice({
 
     removeItem(state, actions) {
       state.items = actions.payload.items;
+      state.total = actions.payload.total;
     },
 
     clearCart(state) {

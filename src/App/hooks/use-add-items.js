@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cart';
 
@@ -13,7 +14,7 @@ const useAddItems = function (order) {
   //2.3. If it is in the cart, just update the amount
   //2.4. Update the store (dispatch updated state)
 
-  const addToCart = () => {
+  const addToCart = useCallback(() => {
     //calculate total amount
     const updatedTotal = total + order.price * order.quantity;
 
@@ -45,7 +46,7 @@ const useAddItems = function (order) {
         total: updatedTotal,
       })
     );
-  };
+  }, [dispatch, order, items, total]);
 
   return addToCart;
 };
