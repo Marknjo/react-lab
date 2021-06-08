@@ -124,7 +124,9 @@ const CheckoutForm = function () {
                   <div>Total</div>
                 </li>
 
-                <li className={styles['checkout__item']}>
+                <li
+                  className={`${styles['checkout__item']} ${styles['checkout__item--order']}`}
+                >
                   <div className={styles['checkout__product-description']}>
                     <span> Pizza </span>
                     <span>

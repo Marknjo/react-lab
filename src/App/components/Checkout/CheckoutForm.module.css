@@ -109,14 +109,29 @@
   padding: 0 1rem;
 }
 
-.checkout__item div {
+.checkout__item div:last-of-type {
+  justify-self: center;
 }
 
-.checkout__product-description:nth-of-type(1n) {
+.checkout__item--order {
+  font-size: 0.8rem;
+  color: var(--color-primary-dark);
+  padding-top: 0.4rem;
+  padding-bottom: 0.1rem;
+}
+
+.checkout__item--order:nth-of-type(2n) {
+  border-bottom: 1px solid var(--color-primary-light-2);
   background-color: var(--color-primary-light-1);
 }
 
+.checkout__product-description {
+}
+
 .checkout__item--header {
+  border-bottom: 1px solid var(--color-primary-light-2);
+  padding-bottom: 0.4rem;
+  color: var(--color-secondary);
 }
 
 .checkout__item--footer {
