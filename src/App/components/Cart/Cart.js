@@ -7,9 +7,8 @@ import CartItem from './CartItem';
 
 const Cart = props => {
   const cartItems = useSelector(state => state.cart.items);
-  const totalAmount = useSelector(state => state.cart.totalAmount);
+  const total = useSelector(state => state.cart.total);
   const dispatch = useDispatch();
-  const formatedTotalAmount = priceFormatter(totalAmount);
 
   const shopNowHandler = () => {
     dispatch(cartActions.toggleCart());
@@ -34,10 +33,11 @@ const Cart = props => {
           <ul>
             {cartItems.map(item => (
               <CartItem
+                key={item.id}
                 item={{
                   title: item.title,
                   quantity: item.quantity,
-                  total: formatedTotalAmount,
+                  total: total,
                   price: item.price,
                 }}
               />
