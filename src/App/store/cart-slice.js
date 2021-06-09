@@ -11,7 +11,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: cartInitialState,
   reducers: {
-    addToCart(state, actions) {
+    addItemToCart(state, actions) {
       //Component heavy dependancy on the work of reducers
       // state.items = actions.payload.items;
       // state.cartTotalAmount = actions.payload.cartTotalAmount;
@@ -28,7 +28,7 @@ const cartSlice = createSlice({
       const incomingItem = actions.payload;
 
       //1.pre work
-      state.totalQuantity = incomingItem.quantity + state.totalQuantity;
+      state.totalQuantity = state.totalQuantity + 1;
       state.cartTotalAmount =
         incomingItem.price * incomingItem.quantity + state.cartTotalAmount;
 
@@ -67,9 +67,53 @@ const cartSlice = createSlice({
       state.items = updatedItems;
     },
 
-    removeItem(state, actions) {
-      state.items = actions.payload.items;
-      state.cartTotalAmount = actions.payload.cartTotalAmount;
+    removeItemFromCart(state, actions) {
+      // state.items = actions.payload.items;
+      // state.cartTotalAmount = actions.payload.cartTotalAmount;
+
+      //Remove items from cart steps
+      //1. get the payload
+      //2.1. pre: calculate Item Total Quantity
+      //2.1.pre: calculate cart total Amount
+      //3. Find if the item stored in the store is already there
+      //4. If it is there, just decrease the quantity count
+      //5. If it is not there/quantity === 1, remove item from the cart
+      //1. Get the payload & current item
+      const id = actions.payload;
+      const currentItem = state.items.find(item => item.id === id);
+
+      //1.pre work
+      state.totalQuantity = state.totalQuantity - 1;
+      state.cartTotalAmount = state.cartTotalAmount - currentItem.price;
+
+      //get items
+
+      //update the item
+      let updatedItems;
+
+      if (currentItem && currentItem.quantity > 1) {
+        //get the item index
+        const currentItemIndex = state.items.findIndex(item => item.id === id);
+
+        const totalQuantity = currentItem.quantity - 1;
+        //reduce quantity of the items
+        const updatedItem = {
+          ...currentItem,
+          total: totalQuantity * currentItem.price,
+          quantity: totalQuantity,
+        };
+
+        //do not mutate state (clone)
+        updatedItems = [...state.items];
+
+        //Swap old with the updated item
+        updatedItems[currentItemIndex] = updatedItem;
+      } else {
+        //remove the item from the cart
+        updatedItems = state.items.filter(item => item.id !== id);
+      }
+
+      state.items = updatedItems;
     },
 
     clearCart(state) {

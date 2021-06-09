@@ -1,11 +1,10 @@
 import classes from './CartItem.module.css';
 import priceFormartter from '../../helpers/priceFormatter';
-import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store/cart';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cart-slice';
 
 const CartItem = props => {
   const { id, title, quantity, total, price, description } = props.item;
-  const { items, total: totalAmount } = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   const order = {
@@ -18,48 +17,13 @@ const CartItem = props => {
   };
 
   const increaseQuantiyHandler = () => {
-    dispatch(cartActions.addToCart(order));
+    dispatch(cartActions.addItemToCart(order));
   };
 
   //Decreasing quantity
   const decreaseQuantityHandler = () => {
-    //get items
-    const currentItem = items.filter(item => item.id === id)[0];
-
-    const updatedTotal = totalAmount - order.price;
-
-    //get the item index
-    const currentItemIndex = items.findIndex(item => item.id === id);
-
-    //update the item
-    let updatedItems;
-
-    if (currentItem && currentItem.quantity > 1) {
-      const totalQuantity = currentItem.quantity - 1;
-      //reduce quantity of the items
-      const updatedItem = {
-        ...currentItem,
-        total: totalQuantity * currentItem.price,
-        quantity: totalQuantity,
-      };
-
-      //do not mutate state (clone)
-      updatedItems = [...items];
-
-      //Swap old and updated item
-      updatedItems[currentItemIndex] = updatedItem;
-    } else {
-      //remove the item from the cart
-      updatedItems = items.filter(item => item.id !== id);
-    }
-
     //dispatch
-    dispatch(
-      cartActions.removeItem({
-        items: updatedItems,
-        total: updatedTotal,
-      })
-    );
+    dispatch(cartActions.removeItemFromCart(id));
   };
 
   return (

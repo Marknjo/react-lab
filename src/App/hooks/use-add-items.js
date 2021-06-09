@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../store/cart';
+import { cartActions } from '../store/cart-slice';
 
 const useAddItems = function (order) {
   const { items, total } = useSelector(state => state.cart);

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import priceFormatter from '../../helpers/priceFormatter';
-import { cartActions } from '../../store/cart';
+import { cartActions } from '../../store/cart-slice';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
@@ -18,7 +18,7 @@ const ProductItem = props => {
 
   //const addToCartHandler = useAddItems(order); //component heavy approach
   const addToCartHandler = () => {
-    dispatch(cartActions.addToCart(order));
+    dispatch(cartActions.addItemToCart(order));
   };
 
   return (
