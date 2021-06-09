@@ -20,7 +20,9 @@ const CheckoutForm = function () {
     setShowModal(true);
   };
 
-  const closeModalHandler = () => {};
+  const closeModalHandler = event => {
+    setShowModal(false);
+  };
 
   const logingForm = (
     <form>
@@ -62,17 +64,23 @@ const CheckoutForm = function () {
           <Button type="button" onClick={showLoginFormInModalHandler}>
             Login Now!
           </Button>
-          <Modal onCloseModal={closeModalHandler}>
-            <div
-              className={`${styles['checkout__login-form']} ${styles['checkout__form-title']}`}
-            >
-              <button type="button" className={styles['btn__close-modal']}>
-                &times;
-              </button>
-              <h3>User Login</h3>
-              {logingForm}
-            </div>
-          </Modal>
+          {showModal && (
+            <Modal onCloseModal={closeModalHandler}>
+              <div
+                className={`${styles['checkout__login-form']} ${styles['checkout__form-title']}`}
+              >
+                <button
+                  type="button"
+                  className={styles['btn__close-modal']}
+                  onClick={closeModalHandler}
+                >
+                  &times;
+                </button>
+                <h3>User Login</h3>
+                {logingForm}
+              </div>
+            </Modal>
+          )}
         </div>
 
         <form action="">
