@@ -1,3 +1,4 @@
+import Button from '../UI/buttons/Button';
 import Card from '../UI/Card/Card';
 import ControlledInput from '../UI/Input/ControlledInput';
 import PageHeaderWrapper from '../UI/PageHeader/PageHeaderWrapper';
@@ -9,43 +10,47 @@ import styles from './CheckoutForm.module.css';
 //2.3. Account Password
 //2.0. You Order
 
+const logingForm = (
+  <form>
+    <ControlledInput
+      label="Email Address/Username"
+      input={{
+        id: 'email-username',
+        value: '',
+        name: 'email-password',
+        type: 'text',
+      }}
+    />
+
+    <ControlledInput
+      label="Account Password "
+      input={{
+        id: 'login-password',
+        value: '',
+        name: 'login-password',
+        type: 'password',
+      }}
+    />
+
+    <div className={styles['checkout__form-action']}>
+      <Button type="submit">Login</Button>
+    </div>
+  </form>
+);
+
 const CheckoutForm = function () {
   return (
     <section className={styles.checkout}>
       <PageHeaderWrapper className={styles['checkout__header']}>
         <h2>Checkout Page</h2>
       </PageHeaderWrapper>
+
       <Card className={styles['checkout__form']}>
-        <div styles={'checkout__login'}>
+        <div className={styles['checkout__login']}>
           <p>Returning customer?</p>
-          <button type="button">Login Now!</button>
-
-          <form>
-            <ControlledInput
-              label="Email Address/Username"
-              input={{
-                id: 'email-username',
-                value: '',
-                name: 'email-password',
-                type: 'text',
-              }}
-            />
-
-            <ControlledInput
-              label="Account Password "
-              input={{
-                id: 'login-password',
-                value: '',
-                name: 'login-password',
-                type: 'password',
-              }}
-            />
-
-            <div className={styles['checkout__form-action']}>
-              <button type="submit">Login</button>
-            </div>
-          </form>
+          <Button type="button">Login Now!</Button>
         </div>
+
         <form action="">
           <div className={styles['chekckout__form-inputs']}>
             <div className={styles['checkout__form-title']}>
@@ -158,7 +163,7 @@ const CheckoutForm = function () {
             </div>
 
             <div className={styles['checkout__form-action']}>
-              <button type="submit">Place Order</button>
+              <Button type="submit">Place Order</Button>
             </div>
           </div>
         </form>

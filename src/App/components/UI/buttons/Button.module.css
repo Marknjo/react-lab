@@ -1,0 +1,15 @@
+.btn {
+  border: none;
+  outline: none;
+  padding: 0.6rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: var(--color-primary-lighter);
+}

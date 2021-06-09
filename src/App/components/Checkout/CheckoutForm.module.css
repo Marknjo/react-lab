@@ -188,19 +188,6 @@
 
 .checkout__form-action button {
   flex: 1;
-  border: none;
-  outline: none;
-  padding: 0.6rem;
-  background-color: var(--color-primary);
-  color: #fff;
-  border-radius: 0.2rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.checkout__form-action button:hover,
-.checkout__form-action button:active {
-  background-color: var(--color-primary-lighter);
 }
 
 .checkout__terms {
@@ -210,4 +197,31 @@
   padding-top: 1rem;
   color: var(--color-secondary-dark-1);
   font-style: italic;
+}
+
+.checkout__login {
+  background-color: var(--color-secondary-light-2);
+  color: var(--color-secondary-dark);
+  padding: 0.6rem 1rem;
+  display: flex;
+  border-radius: 0.4rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.checkout__login p {
+  margin: 0;
+}
+
+.checkout__login button {
+  align-self: center;
+  margin: 0 1rem;
+}
+
+.checkout__login button {
+  background-color: var(--color-primary-lighter);
+}
+
+.checkout__login button:hover,
+.checkout__login button:active {
+  background-color: var(--color-primary);
 }
