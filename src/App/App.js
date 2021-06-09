@@ -29,7 +29,9 @@ function App() {
       return;
     }
 
-    dispatch(sendDataToFirebase(cart, cartUserID));
+    if (cart.didCartChanged) {
+      dispatch(sendDataToFirebase(cart, cartUserID));
+    }
   }, [cart, cartUserID, dispatch]);
 
   return (

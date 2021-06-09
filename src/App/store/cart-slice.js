@@ -7,6 +7,7 @@ const cartInitialState = {
   items: [],
   cartTotalAmount: 0,
   totalQuantity: 0,
+  didCartChanged: false,
 };
 
 //create reducer
@@ -40,6 +41,7 @@ const cartSlice = createSlice({
       state.totalQuantity = state.totalQuantity + 1;
       state.cartTotalAmount =
         incomingItem.price * incomingItem.quantity + state.cartTotalAmount;
+      state.didCartChanged = true;
 
       //3. find if item is in the store
       const existingItem = state.items.find(item => {
@@ -94,6 +96,7 @@ const cartSlice = createSlice({
       //1.pre work
       state.totalQuantity = state.totalQuantity - 1;
       state.cartTotalAmount = state.cartTotalAmount - currentItem.price;
+      state.didCartChanged = true;
 
       //get items
 
@@ -158,7 +161,11 @@ export const sendDataToFirebase = function (cart, cartUserID) {
       //data format cart-userID.json -PUT format
       const response = await fetch(`${FIREBASE_URL}${cartUserID}.json`, {
         method: 'PUT',
-        body: JSON.stringify(cart),
+        body: JSON.stringify({
+          items: cart.items,
+          cartTotalAmount: cart.cartTotalAmount,
+          totalQuantity: cart.totalQuantity,
+        }),
         headers: {
           'Content-Type': 'application/json',
         },
