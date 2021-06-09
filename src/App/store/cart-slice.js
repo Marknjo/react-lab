@@ -134,9 +134,23 @@ const cartSlice = createSlice({
   },
 });
 
+//Cart Redux Thunks
+
 /**
- * Cart Redux Thunks
+ * Reusable notification auto hide timer
+ *
+ * @param {Function} dispatch a callback dispatch method
+ * @returns {Number} a timer handler i.e. for clearing timer
+ * @author Mark Njoroge
+ *
+ * @TODO: this function is well suited as a notification clearance helper
+ * @TODO: Therefore, it should be handled in the redux helper section (For large apps)
  */
+const hideNotificationTimer = dispatch => {
+  return setTimeout(() => {
+    dispatch(uiActions.hideNotification());
+  }, NOTIFICATION_TIMEOUT * 1000);
+};
 
 export const sendDataToFirebase = function (
   cart,
@@ -146,11 +160,6 @@ export const sendDataToFirebase = function (
   return async dispatch => {
     //do the async tasks here
     //remove cart
-    const hideNotificationTimer = () => {
-      return setTimeout(() => {
-        dispatch(uiActions.hideNotification());
-      }, NOTIFICATION_TIMEOUT * 1000);
-    };
 
     dispatch(
       uiActions.showNotification({
@@ -196,7 +205,7 @@ export const sendDataToFirebase = function (
       );
 
       //hide notification
-      timer = hideNotificationTimer();
+      timer = hideNotificationTimer(dispatch);
     } catch (error) {
       //handle error
       dispatch(
@@ -208,7 +217,7 @@ export const sendDataToFirebase = function (
       );
 
       //run remove message here
-      timer = hideNotificationTimer();
+      timer = hideNotificationTimer(dispatch);
     }
 
     //clear timer
@@ -226,12 +235,6 @@ export const fetchCartFromFireBase = function (
   clearNotificationTimer
 ) {
   return async dispatch => {
-    const hideNotificationTimer = () => {
-      return setTimeout(() => {
-        dispatch(uiActions.hideNotification());
-      }, NOTIFICATION_TIMEOUT * 1000);
-    };
-
     let timer = null;
 
     //conduct the business of fetching data here
@@ -269,7 +272,7 @@ export const fetchCartFromFireBase = function (
       );
 
       //run remove message here
-      timer = hideNotificationTimer();
+      timer = hideNotificationTimer(dispatch);
     }
 
     //clear timer
