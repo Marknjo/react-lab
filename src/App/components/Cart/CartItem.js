@@ -1,6 +1,5 @@
 import classes from './CartItem.module.css';
 import priceFormartter from '../../helpers/priceFormatter';
-import useAddItems from '../../hooks/use-add-items';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart';
 
@@ -18,7 +17,9 @@ const CartItem = props => {
     quantity: 1,
   };
 
-  const increaseQuantiyHandler = useAddItems(order);
+  const increaseQuantiyHandler = () => {
+    dispatch(cartActions.addToCart(order));
+  };
 
   //Decreasing quantity
   const decreaseQuantityHandler = () => {

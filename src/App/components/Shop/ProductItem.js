@@ -1,10 +1,12 @@
+import { useDispatch } from 'react-redux';
 import priceFormatter from '../../helpers/priceFormatter';
-import useAddItems from '../../hooks/use-add-items';
+import { cartActions } from '../../store/cart';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
 const ProductItem = props => {
   const { title, price, description, id } = props;
+  const dispatch = useDispatch();
   const order = {
     id,
     title,
@@ -14,7 +16,10 @@ const ProductItem = props => {
     quantity: 1,
   };
 
-  const addToCartHandler = useAddItems(order);
+  //const addToCartHandler = useAddItems(order); //component heavy approach
+  const addToCartHandler = () => {
+    dispatch(cartActions.addToCart(order));
+  };
 
   return (
     <li className={classes.item}>
