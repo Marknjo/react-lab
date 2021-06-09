@@ -88,10 +88,16 @@
   border-radius: 0.4rem;
   box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
   flex: 0 1 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 .checkout__order-details .checkout__form-title h3 {
   margin: 1rem;
+}
+
+.checkout__order-list {
+  margin-bottom: 2rem;
 }
 
 .checkout__list {
@@ -176,4 +182,23 @@
 }
 
 .checkout__form-action {
+  padding: 0 1rem;
+  display: flex;
+}
+
+.checkout__form-action button {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.6rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkout__form-action button:hover,
+.checkout__form-action button:active {
+  background-color: var(--color-primary-lighter);
 }
