@@ -6,6 +6,7 @@ import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
 import FIREBASE_URL from './configs/firebase';
+import { NOTIFICATION_TIMEOUT } from './configs/index-configs';
 import { uiActions } from './store/ui-slice';
 
 let isLoading = true;
@@ -22,7 +23,7 @@ function App() {
     const hideNotificationTimer = () => {
       return setTimeout(() => {
         dispatch(uiActions.hideNotification());
-      }, 3 * 1000);
+      }, NOTIFICATION_TIMEOUT * 1000);
     };
 
     const sendData = async function () {
