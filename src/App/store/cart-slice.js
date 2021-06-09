@@ -249,9 +249,15 @@ export const fetchCartFromFireBase = function (
 
     //access if there is error and dispatch if not
     try {
-      const data = await fetchData();
+      const cart = await fetchData();
       //no error dispatch
-      dispatch(cartActions.replaceCart(data));
+      dispatch(
+        cartActions.replaceCart({
+          items: cart.items ?? [],
+          cartTotalAmount: cart.cartTotalAmount,
+          totalQuantity: cart.totalQuantity,
+        })
+      );
     } catch (error) {
       //handle error
       dispatch(
