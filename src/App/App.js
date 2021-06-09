@@ -5,7 +5,7 @@ import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
-import { sendDataToFirebase } from './store/cart-slice';
+import { fetchCartFromFireBase, sendDataToFirebase } from './store/cart-slice';
 
 let isLoading = true;
 
@@ -14,7 +14,14 @@ function App() {
   const dispatch = useDispatch();
 
   const cart = useSelector(state => state.cart);
+
+  //@TODO: hookin actual user id to the cart order details
   const cartUserID = 'cart-mark7692';
+
+  useEffect(() => {
+    //fetch data
+    dispatch(fetchCartFromFireBase(cartUserID));
+  }, [dispatch, cartUserID]);
 
   useEffect(() => {
     if (isLoading) {

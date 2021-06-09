@@ -14,6 +14,12 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: cartInitialState,
   reducers: {
+    replaceCart(state, actions) {
+      state.cartTotalAmount = actions.payload.cartTotalAmount;
+      state.totalQuantity = actions.payload.totalQuantity;
+      state.items = actions.payload.items;
+    },
+
     addItemToCart(state, actions) {
       //Component heavy dependancy on the work of reducers
       // state.items = actions.payload.items;
@@ -202,6 +208,54 @@ export const sendDataToFirebase = function (cart, cartUserID) {
 
 //create actions
 export const cartActions = cartSlice.actions;
+
+//fetch my cart from firebase
+export const fetchCartFromFireBase = function (cartUserID) {
+  return async dispatch => {
+    const hideNotificationTimer = () => {
+      return setTimeout(() => {
+        dispatch(uiActions.hideNotification());
+      }, NOTIFICATION_TIMEOUT * 1000);
+    };
+
+    let timer = null;
+
+    //conduct the business of fetching data here
+    const fetchData = async () => {
+      const response = await await fetch(`${FIREBASE_URL}${cartUserID}.json`);
+
+      //check for errors
+      if (!response.ok) {
+        throw new Error('Could fetch cart data!');
+      }
+      const firebaseData = await response.json();
+
+      return firebaseData;
+    };
+
+    //access if there is error and dispatch if not
+    try {
+      const data = await fetchData();
+      //no error dispatch
+      dispatch(cartActions.replaceCart(data));
+    } catch (error) {
+      //handle error
+      dispatch(
+        uiActions.showNotification({
+          title: 'Error!',
+          status: 'error',
+          message: error.message,
+        })
+      );
+
+      //run remove message here
+      timer = hideNotificationTimer();
+    }
+
+    //clear timer
+    clearTimeout(timer);
+  };
+};
 
 //export reducers
 export default cartSlice.reducer;
