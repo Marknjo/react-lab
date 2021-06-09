@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import FIREBASE_URL from '../configs/firebase';
+import { NOTIFICATION_TIMEOUT } from '../configs/index-configs';
+import { uiActions } from './ui-slice';
 
 const cartInitialState = {
   items: [],
@@ -122,8 +125,82 @@ const cartSlice = createSlice({
   },
 });
 
-//create actions
+/**
+ * Cart Redux Thunks
+ */
 
+export const sendDataToFirebase = function (cart, cartUserID) {
+  return async dispatch => {
+    //do the async tasks here
+    //remove cart
+    const hideNotificationTimer = () => {
+      return setTimeout(() => {
+        dispatch(uiActions.hideNotification());
+      }, NOTIFICATION_TIMEOUT * 1000);
+    };
+
+    dispatch(
+      uiActions.showNotification({
+        title: 'Updating',
+        status: '',
+        message: 'Updating the cart...',
+      })
+    );
+
+    const sendData = async () => {
+      //1.update data to the database
+      //data format cart-userID.json -PUT format
+      const response = await fetch(`${FIREBASE_URL}${cartUserID}.json`, {
+        method: 'PUT',
+        body: JSON.stringify(cart),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      //check for errors
+      if (!response.ok) {
+        throw new Error('Could update the cart!');
+      }
+    };
+
+    let timer = null;
+    //send data
+    try {
+      await sendData();
+
+      //response successful
+      dispatch(
+        uiActions.showNotification({
+          title: 'Success',
+          status: 'success',
+          message: 'Cart was successfully updated',
+        })
+      );
+
+      //hide notification
+      timer = hideNotificationTimer();
+    } catch (error) {
+      //handle error
+      dispatch(
+        uiActions.showNotification({
+          title: 'Error!',
+          status: 'error',
+          message: error.message,
+        })
+      );
+
+      //run remove message here
+      timer = hideNotificationTimer();
+    }
+
+    //clear timer
+    clearTimeout(timer);
+    //return timer;
+  };
+};
+
+//create actions
 export const cartActions = cartSlice.actions;
 
 //export reducers
