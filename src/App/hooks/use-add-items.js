@@ -25,10 +25,12 @@ const useAddItems = function (order) {
     let updatedItems;
 
     if (currentItem) {
+      const totalQuantity = currentItem.quantity + 1;
       //update the amount
       const updateItem = {
         ...currentItem,
-        quantity: currentItem.quantity + 1,
+        total: totalQuantity * currentItem.price,
+        quantity: totalQuantity,
       };
       //Do not mutate
       updatedItems = [...items];
@@ -43,7 +45,7 @@ const useAddItems = function (order) {
     dispatch(
       cartActions.addToCart({
         items: updatedItems,
-        total: updatedTotal,
+        cartTotalAmount: updatedTotal,
       })
     );
   }, [dispatch, order, items, total]);

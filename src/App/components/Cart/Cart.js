@@ -6,7 +6,7 @@ import CartItem from './CartItem';
 
 const Cart = props => {
   const cartItems = useSelector(state => state.cart.items);
-  const total = useSelector(state => state.cart.total);
+
   const dispatch = useDispatch();
 
   const shopNowHandler = () => {
@@ -37,7 +37,7 @@ const Cart = props => {
                   title: item.title,
                   description: item.description,
                   quantity: item.quantity,
-                  total: total,
+                  total: item.total,
                   price: item.price,
                   id: item.id,
                 }}

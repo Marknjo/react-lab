@@ -9,6 +9,7 @@ const ProductItem = props => {
     id,
     title,
     price,
+    total: price,
     description,
     quantity: 1,
   };

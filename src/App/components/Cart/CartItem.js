@@ -8,10 +8,12 @@ const CartItem = props => {
   const { id, title, quantity, total, price, description } = props.item;
   const { items, total: totalAmount } = useSelector(state => state.cart);
   const dispatch = useDispatch();
+
   const order = {
     id,
     title,
     price,
+    total: price,
     description,
     quantity: 1,
   };
@@ -32,10 +34,12 @@ const CartItem = props => {
     let updatedItems;
 
     if (currentItem && currentItem.quantity > 1) {
+      const totalQuantity = currentItem.quantity - 1;
       //reduce quantity of the items
       const updatedItem = {
         ...currentItem,
-        quantity: currentItem.quantity - 1,
+        total: totalQuantity * currentItem.price,
+        quantity: totalQuantity,
       };
 
       //do not mutate state (clone)
