@@ -225,3 +225,35 @@
 .checkout__login button:active {
   background-color: var(--color-primary);
 }
+
+.checkout__login-form {
+  padding: 2rem 2rem 3.6rem;
+  position: relative;
+}
+
+.checkout__login-form .checkout__form-action {
+  padding: 0;
+}
+
+.btn__close-modal {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1.4rem;
+  color: var(--color-primary);
+
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn__close-modal:hover,
+.btn__close-modal:active {
+  color: var(--color-primary-lighter);
+}

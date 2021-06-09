@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import Button from '../UI/buttons/Button';
 import Card from '../UI/Card/Card';
 import ControlledInput from '../UI/Input/ControlledInput';
 import PageHeaderWrapper from '../UI/PageHeader/PageHeaderWrapper';
+import Modal from '../UI/Modal/Modal';
+
 import styles from './CheckoutForm.module.css';
 
 //1. Show checkout form
@@ -10,35 +13,43 @@ import styles from './CheckoutForm.module.css';
 //2.3. Account Password
 //2.0. You Order
 
-const logingForm = (
-  <form>
-    <ControlledInput
-      label="Email Address/Username"
-      input={{
-        id: 'email-username',
-        value: '',
-        name: 'email-password',
-        type: 'text',
-      }}
-    />
-
-    <ControlledInput
-      label="Account Password "
-      input={{
-        id: 'login-password',
-        value: '',
-        name: 'login-password',
-        type: 'password',
-      }}
-    />
-
-    <div className={styles['checkout__form-action']}>
-      <Button type="submit">Login</Button>
-    </div>
-  </form>
-);
-
 const CheckoutForm = function () {
+  const [showModal, setShowModal] = useState(false);
+
+  const showLoginFormInModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const closeModalHandler = () => {};
+
+  const logingForm = (
+    <form>
+      <ControlledInput
+        label="Email Address/Username"
+        input={{
+          id: 'email-username',
+          value: '',
+          name: 'email-password',
+          type: 'text',
+        }}
+      />
+
+      <ControlledInput
+        label="Account Password "
+        input={{
+          id: 'login-password',
+          value: '',
+          name: 'login-password',
+          type: 'password',
+        }}
+      />
+
+      <div className={styles['checkout__form-action']}>
+        <Button type="submit">Login</Button>
+      </div>
+    </form>
+  );
+
   return (
     <section className={styles.checkout}>
       <PageHeaderWrapper className={styles['checkout__header']}>
@@ -48,7 +59,20 @@ const CheckoutForm = function () {
       <Card className={styles['checkout__form']}>
         <div className={styles['checkout__login']}>
           <p>Returning customer?</p>
-          <Button type="button">Login Now!</Button>
+          <Button type="button" onClick={showLoginFormInModalHandler}>
+            Login Now!
+          </Button>
+          <Modal onCloseModal={closeModalHandler}>
+            <div
+              className={`${styles['checkout__login-form']} ${styles['checkout__form-title']}`}
+            >
+              <button type="button" className={styles['btn__close-modal']}>
+                &times;
+              </button>
+              <h3>User Login</h3>
+              {logingForm}
+            </div>
+          </Modal>
         </div>
 
         <form action="">
