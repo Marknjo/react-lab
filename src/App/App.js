@@ -1,5 +1,5 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
@@ -18,10 +18,14 @@ function App() {
   //@TODO: hookin actual user id to the cart order details
   const cartUserID = 'cart-mark7692';
 
+  const clearNotificationTimer = useCallback(timer => {
+    return timer && null;
+  }, []);
+
   useEffect(() => {
     //fetch data
-    dispatch(fetchCartFromFireBase(cartUserID));
-  }, [dispatch, cartUserID]);
+    dispatch(fetchCartFromFireBase(cartUserID, clearNotificationTimer));
+  }, [dispatch, cartUserID, clearNotificationTimer]);
 
   useEffect(() => {
     if (isLoading) {
@@ -30,9 +34,13 @@ function App() {
     }
 
     if (cart.didCartChanged) {
-      dispatch(sendDataToFirebase(cart, cartUserID));
+      dispatch(sendDataToFirebase(cart, cartUserID, clearNotificationTimer));
     }
-  }, [cart, cartUserID, dispatch]);
+
+    return () => {
+      clearTimeout(clearNotificationTimer());
+    };
+  }, [cart, cartUserID, dispatch, clearNotificationTimer]);
 
   return (
     <>

@@ -138,7 +138,11 @@ const cartSlice = createSlice({
  * Cart Redux Thunks
  */
 
-export const sendDataToFirebase = function (cart, cartUserID) {
+export const sendDataToFirebase = function (
+  cart,
+  cartUserID,
+  clearNotificationTimer
+) {
   return async dispatch => {
     //do the async tasks here
     //remove cart
@@ -208,7 +212,7 @@ export const sendDataToFirebase = function (cart, cartUserID) {
     }
 
     //clear timer
-    clearTimeout(timer);
+    clearNotificationTimer(timer);
     //return timer;
   };
 };
@@ -217,7 +221,10 @@ export const sendDataToFirebase = function (cart, cartUserID) {
 export const cartActions = cartSlice.actions;
 
 //fetch my cart from firebase
-export const fetchCartFromFireBase = function (cartUserID) {
+export const fetchCartFromFireBase = function (
+  cartUserID,
+  clearNotificationTimer
+) {
   return async dispatch => {
     const hideNotificationTimer = () => {
       return setTimeout(() => {
@@ -260,7 +267,7 @@ export const fetchCartFromFireBase = function (cartUserID) {
     }
 
     //clear timer
-    clearTimeout(timer);
+    clearNotificationTimer(timer);
   };
 };
 
