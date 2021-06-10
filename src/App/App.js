@@ -1,10 +1,18 @@
 //import { consoleSeparator } from './helpers/consoleSeparator';
+import { Route } from 'react-router-dom';
+import Products from './pages/Products';
+import Welcome from './pages/Welcome';
 
 const App = function () {
   return (
-    <div>
-      <h2>Start the next Session</h2>
-    </div>
+    <>
+      <Route path="/welcome">
+        <Welcome />
+      </Route>
+      <Route path="/products">
+        <Products />
+      </Route>
+    </>
   );
 };
 
