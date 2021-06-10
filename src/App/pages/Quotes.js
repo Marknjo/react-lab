@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import QuoteList from '../components/quotes/QuoteList';
 
 const DUMMY_QUOTES = [
