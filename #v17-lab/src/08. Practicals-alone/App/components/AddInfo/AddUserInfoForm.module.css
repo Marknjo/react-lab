@@ -1,7 +1,0 @@
-.form-control {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  padding: 1.5rem 0;
-}
